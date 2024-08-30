@@ -1,0 +1,136 @@
+module DayOne{
+
+    sound DOSiren {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_siren.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 0.4, 
+        } 
+    }
+
+    sound DOChopper {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_chopper.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 0.5, 
+        } 
+    }
+
+    sound DOJet {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_jet.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 0.6, 
+        } 
+    }
+
+    sound DOExploClose1 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-1.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose2 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-2.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose3 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-3.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose4 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-4.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose5 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-5.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose6 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-6.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose7 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-7.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOExploClose8 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/explo-close-8.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+
+}
