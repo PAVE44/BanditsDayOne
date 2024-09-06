@@ -1,5 +1,25 @@
 DOPhases = DOPhases or {}
 
+local function getGroundType(square)
+    local groundType = "generic"
+    local objects = square:getObjects()
+    for i=0, objects:size()-1 do
+        local object = objects:get(i)
+        if object then
+            local sprite = object:getSprite()
+            if sprite then
+                local spriteName = sprite:getName()
+                if spriteName then
+                    if spriteName:embodies("street") then
+                        groundType = "street"
+                    end
+                end
+            end
+        end
+    end
+    return groundType
+end
+
 DOPhases.SpawnFamilly = function(player)
 
     -- YOUR FAMILLY
@@ -24,7 +44,8 @@ DOPhases.SpawnFamilly = function(player)
     local bandit = BanditCreator.MakeFromWave(config)
     table.insert(event.bandits, bandit)
     table.insert(event.bandits, bandit)
-    
+    addSound(player, player:getX(), player:getY(), player:getZ(), 40, 100)
+
     sendClientCommand(player, 'Commands', 'SpawnGroup', event)
 end
 
@@ -35,10 +56,12 @@ DOPhases.SpawnPeopleInHouses = function(player)
     for y = -80, 80 do
         for x = -80, 80 do
             local square = getCell():getGridSquare(player:getX() + x, player:getY() + y, 0)
-            local building = square:getBuilding()
-            if building then
-                local id = building:getID()
-                buildings[id] = building
+            if square then
+                local building = square:getBuilding()
+                if building then
+                    local id = building:getID()
+                    buildings[id] = building
+                end
             end
         end
     end
@@ -311,13 +334,79 @@ DOPhases.SpawnVeterans = function(player)
     end
 end
 
+DOPhases.SpawnGang = function(player)
+    
+    config = {}
+    config.clanId = 9
+    config.hasRifleChance = 5
+    config.hasPistolChance = 25
+    config.rifleMagCount = 0
+    config.pistolMagCount = 2
+
+    local event = {}
+    event.hostile = true
+    event.occured = false
+    event.program = {}
+    event.program.name = "Bandit"
+    event.program.stage = "Prepare"
+
+    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,45))
+    if spawnPoint then
+        event.x = spawnPoint.x
+        event.y = spawnPoint.y
+        event.bandits = {}
+        
+        local bandit = BanditCreator.MakeFromWave(config)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+
+        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+    end
+end
+
+DOPhases.SpawnScientists = function(player)
+    
+    config = {}
+    config.clanId = 9
+    config.hasRifleChance = 0
+    config.hasPistolChance = 0
+    config.rifleMagCount = 0
+    config.pistolMagCount = 2
+
+    local event = {}
+    event.hostile = false
+    event.occured = false
+    event.program = {}
+    event.program.name = "Looter"
+    event.program.stage = "Prepare"
+
+    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,45))
+    if spawnPoint then
+        event.x = spawnPoint.x
+        event.y = spawnPoint.y
+        event.bandits = {}
+        
+        local bandit = BanditCreator.MakeFromWave(config)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+
+        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+    end
+end
+
 DOPhases.SpawnVehicleFireTruck  = function(player)
     for x=player:getX()-40, player:getX()+40 do
         for y=player:getY()-40, player:getY()+40 do
             if (x<-20 or x>20) and (y<-20 or y>20) then
                 local square = getCell():getGridSquare(x, y, 0)
                 if square and square:isFree(false) then
-                    local gt = BanditScheduler.GetGroundType(square)
+                    local gt = getGroundType(square)
                     if gt == "street" then
                         local args = {type="Base.PickUpTruckLightsFire", x=x, y=y, engine=true, lights=true, lightbar=true}
                         sendClientCommand(player, 'Commands', 'VehicleSpawn', args)
@@ -331,10 +420,13 @@ end
 
 DOPhases.UpdateVehicles = function(player)
     local vehicleList = getCell():getVehicles()
+    
     for i=0, vehicleList:size()-1 do
         local vehicle = vehicleList:get(i)
         if vehicle then
             vehicle:setHeadlightsOn(true)
+            addSound(player, vehicle:getX(), vehicle:getY(), vehicle:getZ(), 150, 100)
+            player:forceAwake()
             if vehicle:hasLightbar() then
                 local mode = vehicle:getLightbarLightsMode()
                 if mode == 0 then
@@ -357,22 +449,27 @@ DOPhases.Siren = function(player)
     local emitter = getWorld():getFreeEmitter(player:getX()+10, player:getY()-20, 0)
     emitter:playAmbientSound("DOSiren")
     emitter:setVolumeAll(0.9)
+    addSound(player, player:getX(), player:getY(), player:getZ(), 150, 100)
 end
 
 DOPhases.ChopperAlert = function(player)
     --getCell():getGridSquare(player:getX()-10, player:getY()-10, 0):playSound("DOChopper")
+    player:forceAwake()
     local emitter = getWorld():getFreeEmitter(player:getX(), player:getY(), 0)
     emitter:playAmbientSound("DOChopper")
     emitter:setVolumeAll(0.9)
+    addSound(player, player:getX(), player:getY(), player:getZ(), 150, 100)
 end
 
 DOPhases.JetLeft = function(player)
+    player:forceAwake()
     local emitter = getWorld():getFreeEmitter(player:getX()-8, player:getY()+8, 0)
     emitter:playAmbientSound("DOJet")
     emitter:setVolumeAll(1)
 end
 
 DOPhases.JetRight = function(player)
+    player:forceAwake()
     local emitter = getWorld():getFreeEmitter(player:getX()+8, player:getY()-8, 0)
     emitter:playAmbientSound("DOJet")
     emitter:setVolumeAll(1)
@@ -383,8 +480,14 @@ DOPhases.BombDrop = function(player)
     local sounds = {"BurnedObjectExploded", "FlameTrapExplode", "SmokeBombExplode", "PipeBombExplode", "DOExploClose1", "DOExploClose2", "DOExploClose3", "DOExploClose4", "DOExploClose5", "DOExploClose6", "DOExploClose7", "DOExploClose8"}
     local sound = sounds[1 + ZombRand(#sounds)]
 
-    local ox = 6 + ZombRand(34)
-    local oy = 6 + ZombRand(34)
+    local offset = 3
+    player:forceAwake()
+    if player:isOutside() then
+        offset = 6  
+    end
+
+    local ox = offset + ZombRand(34)
+    local oy = offset + ZombRand(34)
 
     if ZombRand(2) == 1 then ox = -ox end
     if ZombRand(2) == 1 then oy = -oy end
@@ -394,6 +497,7 @@ DOPhases.BombDrop = function(player)
     local emitter = getWorld():getFreeEmitter(x, y, 0)
     emitter:playSound(sound)
     emitter:setVolumeAll(0.9)
+    addSound(player, x, y, 0, 120, 100)
 
     local squares = {}
     table.insert(squares, {x=x, y=y})
@@ -419,6 +523,6 @@ DOPhases.WeatherStorm = function(player)
     if isClient() then
         getClimateManager():transmitTriggerStorm(12)
     else
-        getClimateManager():triggerCustomWeatherStage(WeatherPeriod.STAGE_STORM, 12)
+        -- getClimateManager():triggerCustomWeatherStage(WeatherPeriod.STAGE_STORM, 12)
     end
 end

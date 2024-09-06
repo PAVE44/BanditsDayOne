@@ -119,7 +119,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct
     event.phase = "WeatherStorm"
-    -- table.insert(schedule, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -205,7 +205,43 @@ function DOServer.Schedule.Create(player, args)
         ct = ct + 5000 + ZombRand(2000)
     end
 
-    -- END 1,773,500
+    -- TIME 1,773,500
+    for i=1, 2 do
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "SpawnGang"
+        table.insert(schedule, event)
+        ct = ct + 15000
+    end
+
+    -- TIME 1,803,500
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "SpawnScientists"
+    table.insert(schedule, event)
+    ct = ct + 25000
+    
+    -- TIME 1,828,500
+    for i=1, 4 do
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "SpawnGang"
+        table.insert(schedule, event)
+        ct = ct + 8000
+    end
+
+    -- TIME 1,860,500
+    ct = ct + 30000
+
+    -- END 1,890,500
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "Siren"
+    table.insert(schedule, event)
 
     for _, p in pairs(schedule) do
         table.insert(gmd.Schedule, p)

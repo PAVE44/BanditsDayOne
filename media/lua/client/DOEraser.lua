@@ -2,6 +2,13 @@ DOEraser = DODOEraser or {}
 
 function DOEraser.CheckErase()
 
+    local ct = DOUtils.GetTime()
+
+    if ct < 905000 or ct > 5000000 then 
+        print ("eraser off")
+        return
+    end
+
     local affectedZones = {}
     affectedZones.Forest = false
     affectedZones.DeepForest = false
@@ -78,6 +85,7 @@ function DOEraser.CheckErase()
                         local square = getCell():getGridSquare(point.x, point.y, 0)
                         IsoFireManager.explode(getCell(), square, 100)
                     end
+                    BanditBaseGroupPlacements.Junk (point.x-3, point.y-3, 0, 6, 6, 7)
                 else
                     print (" NO SQUARE !!!")
                 end
