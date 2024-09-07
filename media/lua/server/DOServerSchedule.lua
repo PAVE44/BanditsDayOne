@@ -204,8 +204,9 @@ function DOServer.Schedule.Create(player, args)
         for k, v in pairs(events) do table.insert(schedule, v) end
         ct = ct + 5000 + ZombRand(2000)
     end
+    ct = ct + 126500
 
-    -- TIME 1,773,500
+    -- TIME 1,900,00
     for i=1, 2 do
         event = {}
         event.pid = pid
@@ -215,16 +216,16 @@ function DOServer.Schedule.Create(player, args)
         ct = ct + 15000
     end
 
-    -- TIME 1,803,500
+    -- TIME 1,930,500
     event = {}
     event.pid = pid
     event.start = ct
     event.phase = "SpawnScientists"
     table.insert(schedule, event)
-    ct = ct + 25000
+    ct = ct + 30000
     
-    -- TIME 1,828,500
-    for i=1, 4 do
+    -- TIME 1,960,000
+    for i=1, 5 do
         event = {}
         event.pid = pid
         event.start = ct
@@ -233,10 +234,10 @@ function DOServer.Schedule.Create(player, args)
         ct = ct + 8000
     end
 
-    -- TIME 1,860,500
+    -- TIME 2,000,000
     ct = ct + 30000
 
-    -- END 1,890,500
+    -- END 2,300,000
     event = {}
     event.pid = pid
     event.start = ct

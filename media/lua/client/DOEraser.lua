@@ -4,7 +4,7 @@ function DOEraser.CheckErase()
 
     local ct = DOUtils.GetTime()
 
-    if ct < 905000 or ct > 5000000 then 
+    if ct < 3000000 or ct > 4500000 then 
         print ("eraser off")
         return
     end
