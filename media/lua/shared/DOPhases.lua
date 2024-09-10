@@ -517,7 +517,24 @@ DOPhases.BombDrop = function(player)
         end
     end
 
-    BanditBaseGroupPlacements.Junk (x-3, y-3, 0, 6, 6, 3)
+    local fakeItem = InventoryItemFactory.CreateItem("Base.RollingPin")
+    local cell = getCell()
+    for dx=x-3, x+5 do
+        for dy=y-3, y+4 do
+            local square = cell:getGridSquare(dx, dy, 0)
+            if square then
+                if ZombRand(4) == 1 then
+                    BanditBasePlacements.IsoObject("floors_burnt_01_1", dx, dy, 0)
+                end
+                local zombie = square:getZombie()
+                if zombie then
+                    zombie:Hit(fakeItem, cell:getFakeZombieForHit(), 50, false, 1, false)
+                end
+            end
+        end
+    end
+
+    BanditBaseGroupPlacements.Junk (x-4, y-4, 0, 6, 8, 2)
 
 end
 
