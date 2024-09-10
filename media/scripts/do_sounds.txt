@@ -5,7 +5,7 @@ module DayOne{
         loop = false,
         is3D = true,
         clip { 
-            file = media/sound/day_one_siren.wav, 
+            file = media/sound/day_one_siren2.wav, 
             distanceMax = 100,
             reverbFactor = 0.1, 
             volume = 0.4, 
