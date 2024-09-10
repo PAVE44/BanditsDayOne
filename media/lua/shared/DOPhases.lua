@@ -340,8 +340,8 @@ DOPhases.SpawnGang = function(player)
     config.clanId = 9
     config.hasRifleChance = 5
     config.hasPistolChance = 25
-    config.rifleMagCount = 0
-    config.pistolMagCount = 2
+    config.rifleMagCount = 2
+    config.pistolMagCount = 3
 
     local event = {}
     event.hostile = true
@@ -357,6 +357,8 @@ DOPhases.SpawnGang = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
         table.insert(event.bandits, bandit)
         table.insert(event.bandits, bandit)
         table.insert(event.bandits, bandit)
@@ -480,7 +482,7 @@ DOPhases.BombDrop = function(player)
     local sounds = {"BurnedObjectExploded", "FlameTrapExplode", "SmokeBombExplode", "PipeBombExplode", "DOExploClose1", "DOExploClose2", "DOExploClose3", "DOExploClose4", "DOExploClose5", "DOExploClose6", "DOExploClose7", "DOExploClose8"}
     local sound = sounds[1 + ZombRand(#sounds)]
 
-    local offset = 3
+    local offset = 2
     player:forceAwake()
     if player:isOutside() then
         offset = 6  
@@ -515,7 +517,7 @@ DOPhases.BombDrop = function(player)
         end
     end
 
-    BanditBaseGroupPlacements.Junk (x-3, y-3, 0, 6, 6, 7)
+    BanditBaseGroupPlacements.Junk (x-3, y-3, 0, 6, 6, 3)
 
 end
 
