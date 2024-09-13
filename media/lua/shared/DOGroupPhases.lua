@@ -68,7 +68,7 @@ DOGroupPhases.MoreActors = function(pid, ct)
     event = {}
     event.pid = pid
     event.start = ct + 2000
-    event.phase = "SpawnPolice"
+    event.phase = "SpawnPolicePatrol"
     table.insert(events, event)
 
     event = {}

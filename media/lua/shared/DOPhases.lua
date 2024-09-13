@@ -20,6 +20,15 @@ local function getGroundType(square)
     return groundType
 end
 
+DOPhases.EraserOn = function(player)
+    DOEraser.State = true
+end
+
+DOPhases.EraserOff = function(player)
+    DOEraser.State = false
+end
+
+
 DOPhases.SpawnFamilly = function(player)
 
     -- YOUR FAMILLY
@@ -95,6 +104,7 @@ DOPhases.SpawnPeopleInHouses = function(player)
                         local bandit = BanditCreator.MakeFromWave(config)
                         table.insert(event.bandits, bandit)
                         table.insert(event.bandits, bandit)
+                        table.insert(event.bandits, bandit)
                         
                         sendClientCommand(player, 'Commands', 'SpawnGroup', event)
                     end
@@ -121,7 +131,7 @@ DOPhases.SpawnPeopleStreet = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    for i=1, 16 do
+    for i=1, 21 do
         local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(15,40))
         if spawnPoint then
             event.x = spawnPoint.x
@@ -208,6 +218,13 @@ DOPhases.SpawnPolicePatrol = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
+        table.insert(event.bandits, bandit)
         table.insert(event.bandits, bandit)
         table.insert(event.bandits, bandit)
         table.insert(event.bandits, bandit)

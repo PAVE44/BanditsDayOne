@@ -1,13 +1,16 @@
 DOEraser = DODOEraser or {}
 
+DOEraser.State = false
+
 function DOEraser.CheckErase()
 
     local ct = DOUtils.GetTime()
 
-    if ct < 3000000 or ct > 4500000 then 
+    if not DOEraser.State then 
         print ("eraser off")
         return
     end
+    print ("eraser on")
 
     local affectedZones = {}
     affectedZones.Forest = false
@@ -52,7 +55,7 @@ function DOEraser.CheckErase()
         for py=min, max do
             for px=min, max do
                 if (px<-d or px>d) and (py<-d or py>d) then
-                    if (px+py) % 9 == 1 then
+                    if (px+py) % 7 == 1 then
                         table.insert(points, {x=x+px, y=y+py})
                     end
                 end
