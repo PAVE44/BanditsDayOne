@@ -8,6 +8,10 @@ function DOMenu.ClearSchedule (player)
     DOScheduler.ClearSchedule(player)
 end
 
+function DOMenu.AddDeadBody(player)
+    DOEraser.State = true
+end
+
 function DOMenu.WorldContextMenuPre(playerID, context, worldobjects, test)
     local square = clickedSquare
     
@@ -15,6 +19,7 @@ function DOMenu.WorldContextMenuPre(playerID, context, worldobjects, test)
     if isDebugEnabled() or isAdmin() then
         context:addOption("[DGB] Create Schedule", player, DOMenu.CreateSchedule)
         context:addOption("[DGB] Clear Schedule", player, DOMenu.ClearSchedule)
+        context:addOption("[DGB] Add Dead Body", player, DOMenu.AddDeadBody)
     end
 end
 

@@ -298,9 +298,9 @@ function DOServer.Schedule.Create(player, args)
     event.start = ct
     event.phase = "Siren"
     table.insert(schedule, event)
-    ct = ct + 2000000
+    ct = ct + 4000000
 
-     -- TIME: 4,300,000
+     -- TIME: 6,300,000
      event = {}
      event.pid = pid
      event.start = ct

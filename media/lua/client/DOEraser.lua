@@ -7,13 +7,8 @@ function DOEraser.CheckErase()
     local player = getPlayer()
     local pst = player:getHoursSurvived()
 
-<<<<<<< HEAD
     if not DOEraser.State then 
         print ("eraser off")
-=======
-    if pst >= 7 and pst < 48 then 
-        -- print ("eraser off")
->>>>>>> feea7c626b0cbde944ca7653afd5ff8b98a12e3c
         return
     end
     print ("eraser on")
@@ -61,7 +56,7 @@ function DOEraser.CheckErase()
         for py=min, max do
             for px=min, max do
                 if (px<-d or px>d) and (py<-d or py>d) then
-                    if (px+py) % 7 == 1 then
+                    if (px+py) % 4 == 1 then
                         table.insert(points, {x=x+px, y=y+py})
                     end
                 end
