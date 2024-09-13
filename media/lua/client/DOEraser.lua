@@ -4,10 +4,16 @@ DOEraser.State = false
 
 function DOEraser.CheckErase()
 
-    local ct = DOUtils.GetTime()
+    local player = getPlayer()
+    local pst = player:getHoursSurvived()
 
+<<<<<<< HEAD
     if not DOEraser.State then 
         print ("eraser off")
+=======
+    if pst >= 7 and pst < 48 then 
+        -- print ("eraser off")
+>>>>>>> feea7c626b0cbde944ca7653afd5ff8b98a12e3c
         return
     end
     print ("eraser on")
@@ -88,7 +94,7 @@ function DOEraser.CheckErase()
                         local square = getCell():getGridSquare(point.x, point.y, 0)
                         IsoFireManager.explode(getCell(), square, 100)
                     end
-                    BanditBaseGroupPlacements.Junk (point.x-3, point.y-3, 0, 6, 6, 7)
+                    BanditBaseGroupPlacements.Junk (point.x-3, point.y-3, 0, 6, 6, 6)
                 else
                     print (" NO SQUARE !!!")
                 end

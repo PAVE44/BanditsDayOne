@@ -445,7 +445,7 @@ DOPhases.UpdateVehicles = function(player)
         if vehicle then
             vehicle:setHeadlightsOn(true)
             addSound(player, vehicle:getX(), vehicle:getY(), vehicle:getZ(), 150, 100)
-            player:forceAwake()
+            BanditPlayer.WakeEveryone()
             if vehicle:hasLightbar() then
                 local mode = vehicle:getLightbarLightsMode()
                 if mode == 0 then
@@ -473,7 +473,7 @@ end
 
 DOPhases.ChopperAlert = function(player)
     --getCell():getGridSquare(player:getX()-10, player:getY()-10, 0):playSound("DOChopper")
-    player:forceAwake()
+    BanditPlayer.WakeEveryone()
     local emitter = getWorld():getFreeEmitter(player:getX(), player:getY(), 0)
     emitter:playAmbientSound("DOChopper")
     emitter:setVolumeAll(0.9)
@@ -481,26 +481,50 @@ DOPhases.ChopperAlert = function(player)
 end
 
 DOPhases.JetLeft = function(player)
-    player:forceAwake()
+    BanditPlayer.WakeEveryone()
     local emitter = getWorld():getFreeEmitter(player:getX()-8, player:getY()+8, 0)
     emitter:playAmbientSound("DOJet")
     emitter:setVolumeAll(1)
 end
 
 DOPhases.JetRight = function(player)
-    player:forceAwake()
+    BanditPlayer.WakeEveryone()
     local emitter = getWorld():getFreeEmitter(player:getX()+8, player:getY()-8, 0)
     emitter:playAmbientSound("DOJet")
     emitter:setVolumeAll(1)
 end
 
 DOPhases.BombDrop = function(player)
+    local affectedZones = {}
+    affectedZones.Forest = false
+    affectedZones.DeepForest = false
+    affectedZones.Nav = true
+    affectedZones.Vegitation = false
+    affectedZones.TownZone = true
+    affectedZones.Ranch = false
+    affectedZones.Farm = true
+    affectedZones.TrailerPark = true
+    affectedZones.ZombiesType = false
+    affectedZones.FarmLand = false
+    affectedZones.LootZone = true
+    affectedZones.ZoneStory = true
+
+    local function isAffectedZone(zoneType)
+        for zt, zv in pairs(affectedZones) do
+            if zoneType == zt and zv then return true end
+        end
+
+        return false
+    end
 
     local sounds = {"BurnedObjectExploded", "FlameTrapExplode", "SmokeBombExplode", "PipeBombExplode", "DOExploClose1", "DOExploClose2", "DOExploClose3", "DOExploClose4", "DOExploClose5", "DOExploClose6", "DOExploClose7", "DOExploClose8"}
-    local sound = sounds[1 + ZombRand(#sounds)]
+    
+    local function getSound()
+        return sounds[1 + ZombRand(#sounds)]
+    end
 
+    -- players outside are safe, house campers not so much
     local offset = 2
-    player:forceAwake()
     if player:isOutside() then
         offset = 6  
     end
@@ -513,46 +537,61 @@ DOPhases.BombDrop = function(player)
 
     local x = player:getX() + ox
     local y = player:getY() + oy
-    local emitter = getWorld():getFreeEmitter(x, y, 0)
-    emitter:playSound(sound)
-    emitter:setVolumeAll(0.9)
-    addSound(player, x, y, 0, 120, 100)
 
-    local squares = {}
-    table.insert(squares, {x=x, y=y})
-    table.insert(squares, {x=x+2, y=y-2})
-    table.insert(squares, {x=x+2, y=y+2})
-    table.insert(squares, {x=x+4, y=y})
+    local zone = getWorld():getMetaGrid():getZoneAt(x, y, 0)
+    if zone then
+        local zoneType = zone:getType()
+        if isAffectedZone(zoneType) then
 
-    for _, sq in pairs(squares) do
-        if isClient() then
-            local args = {x=sq.x, y=sq.y, z=0}
-            sendClientCommand('object', 'addExplosionOnSquare', args)
-        else
-            local square = getCell():getGridSquare(sq.x, sq.y, 0)
-            IsoFireManager.explode(getCell(), square, 100)
-        end
-    end
+            -- bomb sound
+            local sound = getSound()
+            local emitter = getWorld():getFreeEmitter(x, y, 0)
+            emitter:playSound(sound)
+            emitter:setVolumeAll(0.9)
+            addSound(player, x, y, 0, 120, 100)
 
-    local fakeItem = InventoryItemFactory.CreateItem("Base.RollingPin")
-    local cell = getCell()
-    for dx=x-3, x+5 do
-        for dy=y-3, y+4 do
-            local square = cell:getGridSquare(dx, dy, 0)
-            if square then
-                if ZombRand(4) == 1 then
-                    BanditBasePlacements.IsoObject("floors_burnt_01_1", dx, dy, 0)
+            -- wake up players
+            BanditPlayer.WakeEveryone()
+
+            -- explosion and fire
+            local squares = {}
+            table.insert(squares, {x=x, y=y})
+            table.insert(squares, {x=x+2, y=y-2})
+            table.insert(squares, {x=x+2, y=y+2})
+            table.insert(squares, {x=x+4, y=y})
+
+            for _, sq in pairs(squares) do
+                if isClient() then
+                    local args = {x=sq.x, y=sq.y, z=0}
+                    sendClientCommand('object', 'addExplosionOnSquare', args)
+                else
+                    local square = getCell():getGridSquare(sq.x, sq.y, 0)
+                    IsoFireManager.explode(getCell(), square, 100)
                 end
-                local zombie = square:getZombie()
-                if zombie then
-                    zombie:Hit(fakeItem, cell:getFakeZombieForHit(), 50, false, 1, false)
+            end
+
+            -- junk placement
+            BanditBaseGroupPlacements.Junk (x-4, y-4, 0, 6, 8, 3)
+
+            -- damage to zombies, players are safe
+            local fakeItem = InventoryItemFactory.CreateItem("Base.RollingPin")
+            local cell = getCell()
+            for dx=x-3, x+5 do
+                for dy=y-3, y+4 do
+                    local square = cell:getGridSquare(dx, dy, 0)
+                    if square then
+                        if ZombRand(4) == 1 then
+                            BanditBasePlacements.IsoObject("floors_burnt_01_1", dx, dy, 0)
+                        end
+                        local zombie = square:getZombie()
+                        if zombie then
+                            zombie:Hit(fakeItem, cell:getFakeZombieForHit(), 50, false, 1, false)
+                        end
+                    end
                 end
             end
         end
     end
-
-    BanditBaseGroupPlacements.Junk (x-4, y-4, 0, 6, 8, 2)
-
 end
 
 DOPhases.WeatherStorm = function(player)
