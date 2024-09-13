@@ -449,7 +449,7 @@ end
 
 DOPhases.Siren = function(player)
     local emitter = getWorld():getFreeEmitter(player:getX()+10, player:getY()-20, 0)
-    emitter:playAmbientSound("DOSiren")
+    emitter:playAmbientSound("DOSiren2")
     emitter:setVolumeAll(0.9)
     addSound(player, player:getX(), player:getY(), player:getZ(), 150, 100)
 end
