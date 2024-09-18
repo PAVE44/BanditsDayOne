@@ -102,11 +102,13 @@ DOPhases.SpawnPeopleInHouses = function(player)
                         event.bandits = {}
                         
                         local bandit = BanditCreator.MakeFromWave(config)
-                        table.insert(event.bandits, bandit)
-                        table.insert(event.bandits, bandit)
-                        table.insert(event.bandits, bandit)
-                        
-                        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+                        local intensity = SandboxVars.BanditsDayOne.General_CivilianIntensity - 1
+                        if intensity > 0 then
+                            for i=1, intensity do
+                                table.insert(event.bandits, bandit)
+                            end
+                            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+                        end
                     end
                 end
             end
@@ -131,7 +133,8 @@ DOPhases.SpawnPeopleStreet = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    for i=1, 21 do
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 5
+    for i=1, intensity do
         local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(15,40))
         if spawnPoint then
             event.x = spawnPoint.x
@@ -164,7 +167,8 @@ DOPhases.SpawnPeopleStreetFar = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    for i=1, 24 do
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 6
+    for i=1, intensity do
         local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,60))
         if spawnPoint then
             event.x = spawnPoint.x
@@ -218,22 +222,13 @@ DOPhases.SpawnPolicePatrol = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        
-        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        local intensity = (SandboxVars.BanditsDayOne.General_PoliceIntensity - 1) * 4
+        if intensity > 0 then
+            for i=1, intensity do
+                table.insert(event.bandits, bandit)
+            end
+            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        end
     end
 end
 
@@ -261,23 +256,17 @@ DOPhases.SpawnArmy = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
+        local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * 4
+        if intensity > 0 then
+            for i=1, intensity do
+                table.insert(event.bandits, bandit)
+            end
 
-        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
 
-        local args = {type="Base.PickUpVanLightsPolice", x=spawnPoint.x, y=spawnPoint.y, engine=true, lights=true, lightbar=true}
-        sendClientCommand(player, 'Commands', 'VehicleSpawn', args)
+            local args = {type="Base.PickUpVanLightsPolice", x=spawnPoint.x, y=spawnPoint.y, engine=true, lights=true, lightbar=true}
+            sendClientCommand(player, 'Commands', 'VehicleSpawn', args)
+        end
     end
 end
 
@@ -305,17 +294,14 @@ DOPhases.SpawnFriendlyArmy = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-
-        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        local bandit = BanditCreator.MakeFromWave(config)
+        local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * 2
+        if intensity > 0 then
+            for i=1, intensity do
+                table.insert(event.bandits, bandit)
+            end
+            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        end
     end
 end
 
@@ -343,11 +329,14 @@ DOPhases.SpawnVeterans = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        
-        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        local bandit = BanditCreator.MakeFromWave(config)
+        local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1)
+        if intensity > 0 then
+            for i=1, intensity do
+                table.insert(event.bandits, bandit)
+            end
+            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        end
     end
 end
 
@@ -374,15 +363,13 @@ DOPhases.SpawnGang = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-
-        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * 2
+        if intensity > 0 then
+            for i=1, intensity do
+                table.insert(event.bandits, bandit)
+            end
+            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        end
     end
 end
 
@@ -409,13 +396,13 @@ DOPhases.SpawnScientists = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-        table.insert(event.bandits, bandit)
-
-        sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 2
+        if intensity > 0 then
+            for i=1, intensity do
+                table.insert(event.bandits, bandit)
+            end
+            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+        end
     end
 end
 
@@ -523,21 +510,58 @@ DOPhases.BombDrop = function(player)
         return sounds[1 + ZombRand(#sounds)]
     end
 
-    -- players outside are safe, house campers not so much
-    local offset = 2
-    if player:isOutside() then
-        offset = 6  
+    -- where it hits
+    local x
+    local y
+
+    local miss = true
+    if ZombRand(5) > 1 then
+        -- find targets
+        local zombieList = BanditZombie.GetAll()
+        for by=-6, 6 do
+            for bx=-6, 6 do
+                local y1 = player:getY() + by * 6 - 3
+                local y2 = player:getY() + by * 6 + 3
+                local x1 = player:getX() + bx * 6 - 3
+                local x2 = player:getX() + bx * 6 + 3
+                
+                local cnt = 0
+                local killList = {}
+                for id, zombie in pairs(zombieList) do
+                    if zombie.x > x1 and zombie.x < x2 and zombie.y > y1 and zombie.y < y2 then
+                        if not zombie.isBandit then
+                            cnt = cnt + 1
+                        end
+                    end
+                end
+                if cnt > 5 then
+                    miss = false
+                    x = x1 + ZombRand(7)
+                    y = y1 + ZombRand(7)
+                    break
+                end
+            end
+        end
     end
 
-    local ox = offset + ZombRand(34)
-    local oy = offset + ZombRand(34)
+    -- if no targets then random miss
+    if miss then
+        local offset = 2
+        if player:isOutside() then
+            offset = 6  
+        end
 
-    if ZombRand(2) == 1 then ox = -ox end
-    if ZombRand(2) == 1 then oy = -oy end
+        local ox = offset + ZombRand(34)
+        local oy = offset + ZombRand(34)
 
-    local x = player:getX() + ox
-    local y = player:getY() + oy
+        if ZombRand(2) == 1 then ox = -ox end
+        if ZombRand(2) == 1 then oy = -oy end
 
+        x = player:getX() + ox
+        y = player:getY() + oy
+    end
+
+    -- strike only in urban area
     local zone = getWorld():getMetaGrid():getZoneAt(x, y, 0)
     if zone then
         local zoneType = zone:getType()
@@ -556,9 +580,6 @@ DOPhases.BombDrop = function(player)
             -- explosion and fire
             local squares = {}
             table.insert(squares, {x=x, y=y})
-            table.insert(squares, {x=x+2, y=y-2})
-            table.insert(squares, {x=x+2, y=y+2})
-            table.insert(squares, {x=x+4, y=y})
 
             for _, sq in pairs(squares) do
                 if isClient() then
@@ -568,6 +589,9 @@ DOPhases.BombDrop = function(player)
                     local square = getCell():getGridSquare(sq.x, sq.y, 0)
                     IsoFireManager.explode(getCell(), square, 100)
                 end
+                local colors = {r=1.0, g=0.5, b=0.5}
+                local lightSource = IsoLightSource.new(sq.x, sq.y, 0, colors.r, colors.g, colors.b, 60, 10)
+                getCell():addLamppost(lightSource)
             end
 
             -- junk placement
@@ -589,6 +613,56 @@ DOPhases.BombDrop = function(player)
                         end
                     end
                 end
+            end
+        end
+    end
+end
+
+DOPhases.A10 = function(player)
+    local zombieList = BanditZombie.GetAll()
+    for by=-1, 1 do
+        for bx=-1, 1 do
+            local y1 = player:getY() + by * 20 - 10
+            local y2 = player:getY() + by * 20 + 10
+            local x1 = player:getX() + bx * 20 - 10
+            local x2 = player:getX() + bx * 20 + 10
+            
+            local cnt = 0
+            local killList = {}
+            for id, zombie in pairs(zombieList) do
+                if zombie.x > x1 and zombie.x < x2 and zombie.y > y1 and zombie.y < y2 then
+                    -- the strike is counting zombies only, but if threshold is reached all in the area will be affected
+                    if not zombie.isBandit then
+                        cnt = cnt + 1
+                    end
+                    killList[zombie.id] = zombie
+                end
+            end
+
+            if cnt > 12 then
+                local fakeItem = InventoryItemFactory.CreateItem("Base.AssaultRifle")
+                local fakeZombie = getCell():getFakeZombieForHit()
+                for id, zombie in pairs(killList) do
+                    local character = BanditZombie.GetInstanceById(id)
+                    if character and character:isOutside() then
+                        character:Hit(fakeItem, fakeZombie, 1 + ZombRand(20), false, 1, false)
+                        SwipeStatePlayer.splash(character, fakeItem, fakeZombie)
+                    end
+                end
+
+                if player:isOutside() and player:getX() > x1 and player:getX() < x2 and player:getY() > y1 and player:getY() < y2 then
+                    if ZombRand(4) == 0 then
+                        player:Hit(fakeItem, fakeZombie, 0.8, false, 1, false)
+                        SwipeStatePlayer.splash(player, fakeItem, fakeZombie)
+                    end
+                end
+
+                local sound = "DOA10"
+                local emitter = getWorld():getFreeEmitter(x1+10, y1+10, 0)
+                emitter:playSound(sound)
+                emitter:setVolumeAll(0.9)
+                addSound(player, x1+10, y1+10, 0, 120, 100)
+                return
             end
         end
     end

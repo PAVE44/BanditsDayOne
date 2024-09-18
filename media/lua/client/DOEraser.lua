@@ -11,6 +11,12 @@ function DOEraser.CheckErase()
         print ("eraser off")
         return
     end
+
+    local intensity = SandboxVars.BanditsDayOne.General_BombingIntensity - 1
+    if intensity < 2 then
+        return
+    end
+
     print ("eraser on")
 
     local affectedZones = {}
@@ -89,7 +95,10 @@ function DOEraser.CheckErase()
                         local square = getCell():getGridSquare(point.x, point.y, 0)
                         IsoFireManager.explode(getCell(), square, 100)
                     end
-                    BanditBaseGroupPlacements.Junk (point.x-3, point.y-3, 0, 6, 6, 6)
+                    local objectCnt = square:getObjects():size()
+                    if objectCnt < 6 then
+                        BanditBaseGroupPlacements.Junk (point.x-3, point.y-3, 0, 6, 6, 5)
+                    end
                 else
                     print (" NO SQUARE !!!")
                 end

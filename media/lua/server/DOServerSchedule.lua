@@ -83,6 +83,12 @@ function DOServer.Schedule.Create(player, args)
     table.insert(events, event)
 
     -- TIME: 426,000
+    -- A10s
+    for b=1, 30 do
+        local events = DOGroupPhases.A10(pid, ct+b*10000)
+        for k, v in pairs(events) do table.insert(schedule, v) end
+    end
+
     local events = DOGroupPhases.Army(pid, ct)
     for k, v in pairs(events) do table.insert(schedule, v) end
     ct = ct + 60000
@@ -150,7 +156,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct
     event.phase = "WeatherStorm"
-    table.insert(schedule, event)
+    -- table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -190,6 +196,11 @@ function DOServer.Schedule.Create(player, args)
     ct = ct + 8000
     
     -- TIME: 750,000
+    for b=1, 30 do
+        local events = DOGroupPhases.A10(pid, ct+b*9000)
+        for k, v in pairs(events) do table.insert(schedule, v) end
+    end
+
     for b=1, 14 do
         local events = DOGroupPhases.Bombing(pid, ct)
         for k, v in pairs(events) do table.insert(schedule, v) end
@@ -290,17 +301,15 @@ function DOServer.Schedule.Create(player, args)
     end
 
     -- TIME 2,000,000
-    ct = ct + 30000
+    ct = ct + 60000
 
-    -- END 2,300,000
+    -- END 2,330,000
     event = {}
     event.pid = pid
     event.start = ct
     event.phase = "Siren"
     table.insert(schedule, event)
-    ct = ct + 4000000
 
-     -- TIME: 6,300,000
      event = {}
      event.pid = pid
      event.start = ct

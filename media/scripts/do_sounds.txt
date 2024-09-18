@@ -1,5 +1,29 @@
 module DayOne{
 
+    sound DOAmbientGuns {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_ambient_guns.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
+    sound DOAmbientGunsFar {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_ambient_guns_far.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
+        } 
+    }
+
     sound DOSiren {
         category = Object, 
         loop = false,
@@ -45,7 +69,19 @@ module DayOne{
             file = media/sound/day_one_jet.wav, 
             distanceMax = 100,
             reverbFactor = 0.1, 
-            volume = 0.6, 
+            volume = 0.5, 
+        } 
+    }
+
+    sound DOA10 {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_a-10-warthog.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 0.8, 
         } 
     }
 
