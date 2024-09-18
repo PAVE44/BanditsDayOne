@@ -578,20 +578,53 @@ DOPhases.BombDrop = function(player)
             BanditPlayer.WakeEveryone()
 
             -- explosion and fire
-            local squares = {}
-            table.insert(squares, {x=x, y=y})
+            local square = getCell():getGridSquare(x, y, 0)
 
-            for _, sq in pairs(squares) do
-                if isClient() then
-                    local args = {x=sq.x, y=sq.y, z=0}
-                    sendClientCommand('object', 'addExplosionOnSquare', args)
+            if isClient() then
+                local args = {x=x, y=y, z=0}
+                sendClientCommand('object', 'addExplosionOnSquare', args)
+            else
+                
+                IsoFireManager.explode(getCell(), square, 100)
+            end
+            
+            -- light blast
+            local colors = {r=1.0, g=0.5, b=0.5}
+            local lightSource = IsoLightSource.new(x, y, 0, colors.r, colors.g, colors.b, 60, 10)
+            getCell():addLamppost(lightSource)
+            
+            local lightLevel = square:getLightLevel(0)
+            if lightLevel < 0.95 and player:isOutside() then
+                local px = player:getX()
+                local py = player:getY()
+                local sx = square:getX()
+                local sy = square:getY()
+
+                local dx = math.abs(px - sx)
+                local dy = math.abs(py - sy)
+
+                local tex
+                local dist = math.sqrt(math.pow(sx - px, 2) + math.pow(sy - py, 2))
+                if dist > 40 then dist = 40 end
+
+                if dx > dy then
+                    if sx > px then
+                        tex = "e"
+                    else
+                        tex = "w"
+                    end
                 else
-                    local square = getCell():getGridSquare(sq.x, sq.y, 0)
-                    IsoFireManager.explode(getCell(), square, 100)
+                    if sy > py then
+                        tex = "s"
+                    else
+                        tex = "n"
+                    end
                 end
-                local colors = {r=1.0, g=0.5, b=0.5}
-                local lightSource = IsoLightSource.new(sq.x, sq.y, 0, colors.r, colors.g, colors.b, 60, 10)
-                getCell():addLamppost(lightSource)
+
+                DOTex.tex = getTexture("media/textures/blast_" .. tex .. ".png")
+                local alpha = 1.2 - (dist / 40)
+                if alpha > 1 then alpha = 1 end
+                DOTex.alpha = alpha
             end
 
             -- junk placement

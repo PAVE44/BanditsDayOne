@@ -16,6 +16,41 @@ function DOMenu.AddLight(player, square)
     local colors = {r=1.0, g=0.5, b=0.5}
     local lightSource = IsoLightSource.new(square:getX(), square:getY(), square:getZ(), colors.r, colors.g, colors.b, 60, 5)
     getCell():addLamppost(lightSource)
+    
+    local lightLevel = square:getLightLevel(0)
+    print ("LIGHTLEVEL:" .. lightLevel)
+    if lightLevel < 0.7 and player:isOutside() then
+        local px = player:getX()
+        local py = player:getY()
+        local sx = square:getX()
+        local sy = square:getY()
+
+        local dx = math.abs(px - sx)
+        local dy = math.abs(py - sy)
+
+        local tex
+        local dist = math.sqrt(math.pow(sx - px, 2) + math.pow(sy - py, 2))
+        if dist > 30 then dist = 30 end
+
+        if dx > dy then
+            if sx > px then
+                tex = "e"
+            else
+                tex = "w"
+            end
+        else
+            if sy > py then
+                tex = "s"
+            else
+                tex = "n"
+            end
+        end
+
+        DOTex.tex = getTexture("media/textures/blast_" .. tex .. ".png")
+        DOTex.alpha = 1 - (dist / 30)
+    end
+    
+
 end
 
 function DOMenu.AddEvent(player, zombie)
