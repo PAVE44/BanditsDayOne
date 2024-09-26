@@ -344,7 +344,7 @@ DOPhases.SpawnGang = function(player)
     
     config = {}
     config.clanId = 9
-    config.hasRifleChance = 5
+    config.hasRifleChance = 0
     config.hasPistolChance = 25
     config.rifleMagCount = 2
     config.pistolMagCount = 3
@@ -363,7 +363,7 @@ DOPhases.SpawnGang = function(player)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * 2
+        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1)
         if intensity > 0 then
             for i=1, intensity do
                 table.insert(event.bandits, bandit)
