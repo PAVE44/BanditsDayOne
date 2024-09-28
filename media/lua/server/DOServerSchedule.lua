@@ -36,11 +36,20 @@ function DOServer.Schedule.Create(player, args)
     table.insert(schedule, event)
     ct = ct + 60000
 
-    -- TIME: 180,000
-    local events = DOGroupPhases.MoreActors(pid, ct)
-    for k, v in pairs(events) do table.insert(schedule, v) end
-    ct = ct + 4000
-    
+    event = {}
+    event.pid = pid
+    event.start = ct 
+    event.phase = "ChopperAlert"
+    table.insert(events, event)
+    ct = ct + 5000
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "SpawnPolicePatrol"
+    table.insert(events, event)
+    ct = ct + 5000
+
     event = {}
     event.pid = pid
     event.start = ct
@@ -208,15 +217,23 @@ function DOServer.Schedule.Create(player, args)
     end
 
     -- TIME: 750,000
-    local events = DOGroupPhases.MoreActors(pid, ct)
-    for k, v in pairs(events) do table.insert(schedule, v) end
-    ct = ct + 4000
+    event = {}
+    event.pid = pid
+    event.start = ct 
+    event.phase = "ChopperAlert"
+    table.insert(events, event)
 
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "SpawnPolicePatrol"
+    table.insert(events, event)
+    ct = ct + 8000
 
     -- TIME: 862,000
     event = {}
     event.pid = pid
-    event.start = ct + 100
+    event.start = ct
     event.phase = "SpawnPeopleInHouses"
     table.insert(events, event)
 
@@ -257,6 +274,12 @@ function DOServer.Schedule.Create(player, args)
     end
 
     -- TIME: 1,167,500
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "CiviliansOff"
+    table.insert(schedule, event)
+
     event = {}
     event.pid = pid
     event.start = ct
@@ -301,19 +324,22 @@ function DOServer.Schedule.Create(player, args)
     end
 
     -- TIME 2,000,000
-    ct = ct + 60000
+    ct = ct + 70000
 
     -- END 2,330,000
-    event = {}
-    event.pid = pid
-    event.start = ct
-    event.phase = "Siren"
-    table.insert(schedule, event)
+    local events = DOGroupPhases.Kaboom(pid, ct)
+    for k, v in pairs(events) do table.insert(schedule, v) end
 
      event = {}
      event.pid = pid
      event.start = ct
      event.phase = "EraserOff"
+     table.insert(schedule, event)
+
+     event = {}
+     event.pid = pid
+     event.start = ct
+     event.phase = "TvOff"
      table.insert(schedule, event)
  
     for _, p in pairs(schedule) do
@@ -331,6 +357,40 @@ end
 function DOServer.Schedule.RemovePhase(player, args)
     local gmd = GetDOModData()
     table.remove(gmd.Schedule, args.i)
+end
+
+function DOServer.Schedule.Kaboom(player, args)
+    local px = player:getX()
+    local py = player:getY()
+    local cell = player:getCell()
+    local r = args.r
+    for z=0, 4 do
+        for y=-r, r do
+            for x=-r, r do
+                local bx = px + x
+                local by = py + y
+                local dist = math.sqrt(math.pow(bx - px, 2) + math.pow(by - py, 2))
+                if dist < r then
+                    local square = cell:getGridSquare(bx, by, z)
+                    if square then
+                        square:BurnWalls(false)
+                        if ZombRand(4) == 1 and square:isFree(false) then
+                            local obj = IsoObject.new(square, "floors_burnt_01_1", "")
+                            square:AddSpecialObject(obj)
+                            obj:transmitCompleteItemToClients()
+                        end
+                        if ZombRand(6) == 1 and square:isFree(false) then
+                            local rn = ZombRand(53)
+                            local sprite = "trash_01_" .. tostring(rn)
+                            local obj = IsoObject.new(square, sprite, "")
+                            square:AddSpecialObject(obj)
+                            obj:transmitCompleteItemToClients()
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
 
 local onClientCommand = function(module, command, player, args)

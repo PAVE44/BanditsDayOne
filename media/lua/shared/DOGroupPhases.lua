@@ -30,12 +30,6 @@ DOGroupPhases.Start = function(pid, ct)
 
     event = {}
     event.pid = pid
-    event.start = ct + 2000
-    event.phase = "SpawnPeopleStreet"
-    table.insert(events, event)
-
-    event = {}
-    event.pid = pid
     event.start = ct + 10000
     event.phase = "SpawnPeopleInHouses"
     table.insert(events, event)
@@ -55,40 +49,9 @@ DOGroupPhases.Start = function(pid, ct)
     return events
 end
 
-DOGroupPhases.MoreActors = function(pid, ct)
-    local events = {}
-    local event
-
-    event = {}
-    event.pid = pid
-    event.start = ct 
-    event.phase = "SpawnPeopleStreetFar"
-    table.insert(events, event)
-
-    event = {}
-    event.pid = pid
-    event.start = ct + 2000
-    event.phase = "SpawnPolicePatrol"
-    table.insert(events, event)
-
-    event = {}
-    event.pid = pid
-    event.start = ct + 4000
-    event.phase = "ChopperAlert"
-    table.insert(events, event)
-
-    return events
-end
-
 DOGroupPhases.Army = function(pid, ct)
     local events = {}
     local event
-
-    event = {}
-    event.pid = pid
-    event.start = ct 
-    event.phase = "SpawnPeopleStreetFar"
-    table.insert(events, event)
 
     event = {}
     event.pid = pid
@@ -286,6 +249,51 @@ DOGroupPhases.A10 = function(pid, ct)
         event.phase = "A10"
         table.insert(events, event)
         ct = ct + 700
+    end
+
+    return events
+end
+
+DOGroupPhases.Kaboom = function(pid, ct)
+    local events = {}
+    local event
+
+    local j1 = "JetLeft"
+    local j2 = "JetRight"
+    if ZombRand(2) == 1 then
+        j1 = "JetRight"
+        j2 = "JetLeft"
+    end
+
+    local intensity = SandboxVars.BanditsDayOne.General_BombingIntensity - 1
+
+    event = {}
+    event.pid = pid
+    event.start = ct + 1000
+    event.phase = "Siren"
+    table.insert(events, event)
+    ct = ct + 5000
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = j1
+    table.insert(events, event)
+    ct = ct + 500
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = j2
+    table.insert(events, event)
+    ct = ct + 19500
+
+    if intensity > 1 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "Kaboom"
+        table.insert(events, event)
     end
 
     return events

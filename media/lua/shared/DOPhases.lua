@@ -28,6 +28,21 @@ DOPhases.EraserOff = function(player)
     DOEraser.State = false
 end
 
+DOPhases.TVOn = function(player)
+    DOTV.State = true
+end
+
+DOPhases.TVOff = function(player)
+    DOTV.State = false
+end
+
+DOPhases.CiviliansOn = function(player)
+    DOCivilians.State = true
+end
+
+DOPhases.CiviliansOff = function(player)
+    DOCivilians.State = false
+end
 
 DOPhases.SpawnFamilly = function(player)
 
@@ -133,7 +148,7 @@ DOPhases.SpawnPeopleStreet = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 5
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 4
     for i=1, intensity do
         local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(15,40))
         if spawnPoint then
@@ -167,9 +182,9 @@ DOPhases.SpawnPeopleStreetFar = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 6
+    local intensity = 1
     for i=1, intensity do
-        local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,60))
+        local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,50))
         if spawnPoint then
             event.x = spawnPoint.x
             event.y = spawnPoint.y
@@ -376,11 +391,11 @@ end
 DOPhases.SpawnScientists = function(player)
     
     config = {}
-    config.clanId = 9
+    config.clanId = 12
     config.hasRifleChance = 0
     config.hasPistolChance = 0
     config.rifleMagCount = 0
-    config.pistolMagCount = 2
+    config.pistolMagCount = 0
 
     local event = {}
     event.hostile = false
@@ -389,7 +404,7 @@ DOPhases.SpawnScientists = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,45))
+    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,55))
     if spawnPoint then
         event.x = spawnPoint.x
         event.y = spawnPoint.y
@@ -479,6 +494,52 @@ DOPhases.JetRight = function(player)
     local emitter = getWorld():getFreeEmitter(player:getX()+8, player:getY()-8, 0)
     emitter:playAmbientSound("DOJet")
     emitter:setVolumeAll(1)
+end
+
+DOPhases.Kaboom = function(player)
+    local px = player:getX()
+    local py = player:getY()
+    
+    DOTex.speed = 0.018
+    DOTex.tex = getTexture("media/textures/mask_white.png")
+    DOTex.alpha = 2
+    player:playSound("DOKaboom")
+
+    local r = 80
+    args = {}
+    args.r = r
+    sendClientCommand(player, 'Schedule', 'Kaboom', args)
+
+    local fakeItem = InventoryItemFactory.CreateItem("Base.RollingPin")
+    local fakeZombie = getCell():getFakeZombieForHit()
+    local zombieList = BanditZombie.GetAll()
+    for id, z in pairs(zombieList) do
+        local dist = math.sqrt(math.pow(z.x - px, 2) + math.pow(z.y - py, 2))
+        if dist < r then
+            local character = BanditZombie.GetInstanceById(id)
+            if character and character:isOutside() then
+                character:Hit(fakeItem, fakeZombie, 50, false, 1, false)
+                character:setCrawler(true)
+                character:setHealth(0)
+                character:clearAttachedItems()
+                character:changeState(ZombieOnGroundState.instance())
+                character:setAttackedBy(fakeZombie)
+                character:becomeCorpse()
+            end
+        end
+    end
+
+    if player:isOutside() then
+        player:clearVariable("BumpFallType")
+        player:setBumpType("stagger")
+        player:setBumpFall(true)
+        player:setBumpFallType("pushedBehind")
+        
+        local bodyPart = player:getBodyDamage():getBodyPart(BodyPartType.Head)
+        bodyPart:setBurned()
+        bodyPart:setAdditionalPain(100)
+        
+    end
 end
 
 DOPhases.BombDrop = function(player)
@@ -587,6 +648,15 @@ DOPhases.BombDrop = function(player)
                 
                 IsoFireManager.explode(getCell(), square, 100)
             end
+
+            -- blast tex
+            local effect = {}
+            effect.x = square:getX()
+            effect.y = square:getY()
+            effect.z = square:getZ()
+            effect.offset = 320
+            effect.frameCnt = 17
+            DOEffects.Add(effect)
             
             -- light blast
             local colors = {r=1.0, g=0.5, b=0.5}
@@ -622,6 +692,7 @@ DOPhases.BombDrop = function(player)
                 end
 
                 DOTex.tex = getTexture("media/textures/blast_" .. tex .. ".png")
+                DOTex.speed = 0.05
                 local alpha = 1.2 - (dist / 40)
                 if alpha > 1 then alpha = 1 end
                 DOTex.alpha = alpha
@@ -708,3 +779,4 @@ DOPhases.WeatherStorm = function(player)
         -- getClimateManager():triggerCustomWeatherStage(WeatherPeriod.STAGE_STORM, 12)
     end
 end
+

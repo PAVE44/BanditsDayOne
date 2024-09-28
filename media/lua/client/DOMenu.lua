@@ -12,45 +12,16 @@ function DOMenu.EraserOn(player, zombie)
     DOEraser.State = true
 end
 
-function DOMenu.AddLight(player, square)
-    local colors = {r=1.0, g=0.5, b=0.5}
-    local lightSource = IsoLightSource.new(square:getX(), square:getY(), square:getZ(), colors.r, colors.g, colors.b, 60, 5)
-    getCell():addLamppost(lightSource)
-    
-    local lightLevel = square:getLightLevel(0)
-    print ("LIGHTLEVEL:" .. lightLevel)
-    if lightLevel < 0.7 and player:isOutside() then
-        local px = player:getX()
-        local py = player:getY()
-        local sx = square:getX()
-        local sy = square:getY()
+function DOMenu.AddBomb(player, square)
+    DOPhases.BombDrop(player)
+end
 
-        local dx = math.abs(px - sx)
-        local dy = math.abs(py - sy)
+function DOMenu.Kaboom(player, square)
+    DOPhases.Kaboom(player)
+end
 
-        local tex
-        local dist = math.sqrt(math.pow(sx - px, 2) + math.pow(sy - py, 2))
-        if dist > 30 then dist = 30 end
-
-        if dx > dy then
-            if sx > px then
-                tex = "e"
-            else
-                tex = "w"
-            end
-        else
-            if sy > py then
-                tex = "s"
-            else
-                tex = "n"
-            end
-        end
-
-        DOTex.tex = getTexture("media/textures/blast_" .. tex .. ".png")
-        DOTex.alpha = 1 - (dist / 30)
-    end
-    
-
+function DOMenu.TVBroadCast(player, square)
+    DOPhases.TVBroadCast(player)
 end
 
 function DOMenu.AddEvent(player, zombie)
@@ -69,7 +40,9 @@ function DOMenu.WorldContextMenuPre(playerID, context, worldobjects, test)
         -- context:addOption("[DGB] Create Schedule", player, DOMenu.CreateSchedule)
         -- context:addOption("[DGB] Clear Schedule", player, DOMenu.ClearSchedule)
         -- context:addOption("[DGB] Eraser On", player, DOMenu.EraserOn)
-        -- context:addOption("[DGB] Add Light", player, DOMenu.AddLight, square)
+        context:addOption("[DGB] Bomb Drop", player, DOMenu.AddBomb, square)
+        context:addOption("[DGB] Kaboom", player, DOMenu.Kaboom, square)
+        context:addOption("[DGB] TV Broadcast", player, DOMenu.TVBroadCast, square)
     end
 end
 

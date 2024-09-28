@@ -48,6 +48,17 @@ module DayOne{
         } 
     }
 
+    sound DOTV {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_tv.wav, 
+            distanceMax = 20,
+            reverbFactor = 0.1, 
+            volume = 0.2, 
+        } 
+    }
 
     sound DOChopper {
         category = Object, 
@@ -82,6 +93,18 @@ module DayOne{
             distanceMax = 100,
             reverbFactor = 0.1, 
             volume = 0.8, 
+        } 
+    }
+
+    sound DOKaboom {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_kaboom.wav, 
+            distanceMax = 100,
+            reverbFactor = 0.1, 
+            volume = 1, 
         } 
     }
 
