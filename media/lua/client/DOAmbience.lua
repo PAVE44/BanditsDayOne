@@ -1,6 +1,10 @@
 DOAmbience = DOAmbience or {}
 
+DOAmbience.State = false
+
 DOAmbience.CheckAmbience = function()
+    if not DOAmbience.State then return end
+
     local player = getPlayer()
     local px = player:getX()
     local py = player:getY()

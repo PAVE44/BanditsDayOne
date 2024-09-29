@@ -6,6 +6,24 @@ DOGroupPhases.Start = function(pid, ct)
 
     event = {}
     event.pid = pid
+    event.start = ct
+    event.phase = "CiviliansOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "TvOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "AmbienceOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
     event.start = ct + 0
     event.phase = "SpawnFamilly"
     table.insert(events, event)
@@ -52,6 +70,24 @@ end
 DOGroupPhases.Army = function(pid, ct)
     local events = {}
     local event
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "CiviliansOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "TvOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "AmbienceOn"
+    table.insert(events, event)
 
     event = {}
     event.pid = pid
@@ -103,6 +139,24 @@ DOGroupPhases.Bombing = function(pid, ct)
     event = {}
     event.pid = pid
     event.start = ct
+    event.phase = "CiviliansOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "TvOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "AmbienceOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
     event.phase = j1
     table.insert(events, event)
     ct = ct + 500
@@ -122,6 +176,12 @@ DOGroupPhases.Bombing = function(pid, ct)
         table.insert(events, event)
         ct = ct + 700
     end
+
+    event = {}
+    event.pid = pid
+    event.start = ct + 100
+    event.phase = "UpdateVehicles"
+    table.insert(events, event)
 
     if intensity > 1 then
         event = {}
@@ -183,6 +243,24 @@ DOGroupPhases.A10 = function(pid, ct)
 
     local intensity = SandboxVars.BanditsDayOne.General_WarthogIntensity - 1
     
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "CiviliansOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "TvOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "AmbienceOn"
+    table.insert(events, event)
+
     event = {}
     event.pid = pid
     event.start = ct

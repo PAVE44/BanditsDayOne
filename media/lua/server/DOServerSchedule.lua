@@ -48,14 +48,7 @@ function DOServer.Schedule.Create(player, args)
     event.start = ct
     event.phase = "SpawnPolicePatrol"
     table.insert(events, event)
-    ct = ct + 5000
-
-    event = {}
-    event.pid = pid
-    event.start = ct
-    event.phase = "UpdateVehicles"
-    table.insert(schedule, event)
-    ct = ct + 174000
+    ct = ct + 179000
 
     -- TIME: 360,000
     event = {}
@@ -330,18 +323,26 @@ function DOServer.Schedule.Create(player, args)
     local events = DOGroupPhases.Kaboom(pid, ct)
     for k, v in pairs(events) do table.insert(schedule, v) end
 
-     event = {}
-     event.pid = pid
-     event.start = ct
-     event.phase = "EraserOff"
-     table.insert(schedule, event)
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "TvOff"
+    table.insert(schedule, event)
+    ct = ct + 20000
 
-     event = {}
-     event.pid = pid
-     event.start = ct
-     event.phase = "TvOff"
-     table.insert(schedule, event)
- 
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "EraserOff"
+    table.insert(schedule, event)
+    ct = ct + 20000
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "AmbienceOff"
+    table.insert(schedule, event)
+
     for _, p in pairs(schedule) do
         table.insert(gmd.Schedule, p)
     end

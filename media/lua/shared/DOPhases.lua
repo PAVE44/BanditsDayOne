@@ -44,6 +44,14 @@ DOPhases.CiviliansOff = function(player)
     DOCivilians.State = false
 end
 
+DOPhases.AmbienceOn = function(player)
+    DOAmbience.State = true
+end
+
+DOPhases.AmbienceOff = function(player)
+    DOAmbience.State = false
+end
+
 DOPhases.SpawnFamilly = function(player)
 
     -- YOUR FAMILLY
@@ -182,7 +190,7 @@ DOPhases.SpawnPeopleStreetFar = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local intensity = 1
+    local intensity = 3
     for i=1, intensity do
         local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,50))
         if spawnPoint then
@@ -192,7 +200,7 @@ DOPhases.SpawnPeopleStreetFar = function(player)
             
             local bandit = BanditCreator.MakeFromWave(config)
             table.insert(event.bandits, bandit)
-            table.insert(event.bandits, bandit)
+            -- table.insert(event.bandits, bandit)
             
             sendClientCommand(player, 'Commands', 'SpawnGroup', event)
 

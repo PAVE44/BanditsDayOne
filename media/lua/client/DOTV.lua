@@ -1,8 +1,9 @@
 DOTV = DOTV or {}
 
-DOTV.State = true
+DOTV.State = false
 
 DOTV.TVBroadCast = function()
+    if not DOTV.State then return end
     local player = getPlayer()
     local cell = getCell()
     local world = getWorld()

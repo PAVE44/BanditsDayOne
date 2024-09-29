@@ -1,9 +1,9 @@
 DOCivilians = DOCivilians or {}
 
-DOCivilians.State = true
+DOCivilians.State = false
 
 DOCivilians.ControlPopulation = function()
-    
+    if not DOCivilians.State then return end
     local player = getPlayer()
     local px, py = player:getX(), player:getY()
     local zCnt = 0
