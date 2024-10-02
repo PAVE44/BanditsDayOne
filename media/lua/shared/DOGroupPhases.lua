@@ -13,7 +13,7 @@ DOGroupPhases.Start = function(pid, ct)
     event = {}
     event.pid = pid
     event.start = ct
-    event.phase = "TvOn"
+    event.phase = "TVOn"
     table.insert(events, event)
 
     event = {}
@@ -80,7 +80,7 @@ DOGroupPhases.Army = function(pid, ct)
     event = {}
     event.pid = pid
     event.start = ct
-    event.phase = "TvOn"
+    event.phase = "TVOn"
     table.insert(events, event)
 
     event = {}
@@ -145,7 +145,7 @@ DOGroupPhases.Bombing = function(pid, ct)
     event = {}
     event.pid = pid
     event.start = ct
-    event.phase = "TvOn"
+    event.phase = "TVOn"
     table.insert(events, event)
 
     event = {}
@@ -230,6 +230,107 @@ DOGroupPhases.Bombing = function(pid, ct)
     return events
 end
 
+DOGroupPhases.Gas = function(pid, ct)
+    local events = {}
+    local event
+
+    local j1 = "JetLeft"
+    local j2 = "JetRight"
+    if ZombRand(2) == 1 then
+        j1 = "JetRight"
+        j2 = "JetLeft"
+    end
+
+    local intensity = SandboxVars.BanditsDayOne.General_GasIntensity - 1
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "CiviliansOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "TVOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "AmbienceOn"
+    table.insert(events, event)
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = j1
+    table.insert(events, event)
+    ct = ct + 500
+
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = j2
+    table.insert(events, event)
+    ct = ct + 19500
+
+    if intensity > 0 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "GasDrop"
+        table.insert(events, event)
+        ct = ct + 250
+    end
+
+    if intensity > 1 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "GasDrop"
+        table.insert(events, event)
+        ct = ct + 250
+    end
+
+    if intensity > 2 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "GasDrop"
+        table.insert(events, event)
+        ct = ct + 250
+    end
+
+    if intensity > 3 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "GasDrop"
+        table.insert(events, event)
+        ct = ct + 250
+    end
+
+    if intensity > 4 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "GasDrop"
+        table.insert(events, event)
+        ct = ct + 250
+    end
+
+    if intensity > 5 then
+        event = {}
+        event.pid = pid
+        event.start = ct
+        event.phase = "GasDrop"
+        table.insert(events, event)
+    end
+
+    return events
+end
+
 DOGroupPhases.A10 = function(pid, ct)
     local events = {}
     local event
@@ -252,7 +353,7 @@ DOGroupPhases.A10 = function(pid, ct)
     event = {}
     event.pid = pid
     event.start = ct
-    event.phase = "TvOn"
+    event.phase = "TVOn"
     table.insert(events, event)
 
     event = {}

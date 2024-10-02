@@ -72,6 +72,18 @@ module DayOne{
         } 
     }
 
+    sound DOGas {
+        category = Object, 
+        loop = false,
+        is3D = true,
+        clip { 
+            file = media/sound/day_one_gas.wav, 
+            distanceMax = 20,
+            reverbFactor = 0.1, 
+            volume = 0.4, 
+        } 
+    }
+
     sound DOJet {
         category = Object, 
         loop = false,

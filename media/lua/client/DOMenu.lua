@@ -16,6 +16,10 @@ function DOMenu.AddBomb(player, square)
     DOPhases.BombDrop(player)
 end
 
+function DOMenu.AddGas(player, square)
+    DOPhases.GasDrop(player)
+end
+
 function DOMenu.Kaboom(player, square)
     DOPhases.Kaboom(player)
 end
@@ -41,6 +45,7 @@ function DOMenu.WorldContextMenuPre(playerID, context, worldobjects, test)
         -- context:addOption("[DGB] Clear Schedule", player, DOMenu.ClearSchedule)
         -- context:addOption("[DGB] Eraser On", player, DOMenu.EraserOn)
         context:addOption("[DGB] Bomb Drop", player, DOMenu.AddBomb, square)
+        context:addOption("[DGB] Gas Drop", player, DOMenu.AddGas, square)
         context:addOption("[DGB] Kaboom", player, DOMenu.Kaboom, square)
         context:addOption("[DGB] TV Broadcast", player, DOMenu.TVBroadCast, square)
     end

@@ -4,6 +4,7 @@ Sandbox_EN = {
     Sandbox_BanditsDayOne_General = "Bandits Day One"
 
     Sandbox_BanditsDayOne.BombingIntensity = "Bombing intensity"
+    Sandbox_BanditsDayOne.GasIntensity = "Gas intensity"
     Sandbox_BanditsDayOne.WarthogIntensity = "A-10 Warthog intensity"
     Sandbox_BanditsDayOne.CivilianIntensity = "Civilians"
     Sandbox_BanditsDayOne.ArmyIntensity = "Military"

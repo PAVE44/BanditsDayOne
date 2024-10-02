@@ -20,6 +20,60 @@ local function getGroundType(square)
     return groundType
 end
 
+local function findOptimalPoint (player)
+    local x
+    local y
+
+    local miss = true
+    if ZombRand(5) > 1 then
+        -- find targets
+        local zombieList = BanditZombie.GetAll()
+        for by=-6, 6 do
+            for bx=-6, 6 do
+                local y1 = player:getY() + by * 6 - 3
+                local y2 = player:getY() + by * 6 + 3
+                local x1 = player:getX() + bx * 6 - 3
+                local x2 = player:getX() + bx * 6 + 3
+                
+                local cnt = 0
+                local killList = {}
+                for id, zombie in pairs(zombieList) do
+                    if zombie.x > x1 and zombie.x < x2 and zombie.y > y1 and zombie.y < y2 then
+                        if not zombie.isBandit then
+                            cnt = cnt + 1
+                        end
+                    end
+                end
+                if cnt > 5 then
+                    miss = false
+                    x = x1 - 3 + ZombRand(7)
+                    y = y1 - 3 + ZombRand(7)
+                    break
+                end
+            end
+        end
+    end
+
+    -- if no targets then random miss
+    if miss then
+        local offset = 2
+        if player:isOutside() then
+            offset = 6  
+        end
+
+        local ox = offset + ZombRand(34)
+        local oy = offset + ZombRand(34)
+
+        if ZombRand(2) == 1 then ox = -ox end
+        if ZombRand(2) == 1 then oy = -oy end
+
+        x = player:getX() + ox
+        y = player:getY() + oy
+    end
+
+    return x, y
+end
+
 DOPhases.EraserOn = function(player)
     DOEraser.State = true
 end
@@ -156,9 +210,9 @@ DOPhases.SpawnPeopleStreet = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 4
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 3
     for i=1, intensity do
-        local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(15,40))
+        local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(25,45))
         if spawnPoint then
             event.x = spawnPoint.x
             event.y = spawnPoint.y
@@ -214,10 +268,6 @@ DOPhases.SpawnPeopleStreetFar = function(player)
                 end
             end
 
-            if ZombRand(5) == 1 and allfree then
-                local args = {type="Base.CarNormal", x=spawnPoint.x, y=spawnPoint.y, alarm=true}
-                sendClientCommand(player, 'Commands', 'VehicleSpawn', args)
-            end
         end
     end
 end
@@ -238,7 +288,7 @@ DOPhases.SpawnPolicePatrol = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(30,40))
+    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(25,35))
     if spawnPoint then
         event.x = spawnPoint.x
         event.y = spawnPoint.y
@@ -272,7 +322,7 @@ DOPhases.SpawnArmy = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,45))
+    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(30,45))
     if spawnPoint then
         event.x = spawnPoint.x
         event.y = spawnPoint.y
@@ -452,7 +502,7 @@ DOPhases.UpdateVehicles = function(player)
     
     for i=0, vehicleList:size()-1 do
         local vehicle = vehicleList:get(i)
-        if vehicle then
+        if vehicle and not vehicle:isEngineRunning() then
             vehicle:setHeadlightsOn(true)
             addSound(player, vehicle:getX(), vehicle:getY(), vehicle:getZ(), 150, 100)
             BanditPlayer.WakeEveryone()
@@ -580,55 +630,7 @@ DOPhases.BombDrop = function(player)
     end
 
     -- where it hits
-    local x
-    local y
-
-    local miss = true
-    if ZombRand(5) > 1 then
-        -- find targets
-        local zombieList = BanditZombie.GetAll()
-        for by=-6, 6 do
-            for bx=-6, 6 do
-                local y1 = player:getY() + by * 6 - 3
-                local y2 = player:getY() + by * 6 + 3
-                local x1 = player:getX() + bx * 6 - 3
-                local x2 = player:getX() + bx * 6 + 3
-                
-                local cnt = 0
-                local killList = {}
-                for id, zombie in pairs(zombieList) do
-                    if zombie.x > x1 and zombie.x < x2 and zombie.y > y1 and zombie.y < y2 then
-                        if not zombie.isBandit then
-                            cnt = cnt + 1
-                        end
-                    end
-                end
-                if cnt > 5 then
-                    miss = false
-                    x = x1 + ZombRand(7)
-                    y = y1 + ZombRand(7)
-                    break
-                end
-            end
-        end
-    end
-
-    -- if no targets then random miss
-    if miss then
-        local offset = 2
-        if player:isOutside() then
-            offset = 6  
-        end
-
-        local ox = offset + ZombRand(34)
-        local oy = offset + ZombRand(34)
-
-        if ZombRand(2) == 1 then ox = -ox end
-        if ZombRand(2) == 1 then oy = -oy end
-
-        x = player:getX() + ox
-        y = player:getY() + oy
-    end
+    local x, y = findOptimalPoint(player)
 
     -- strike only in urban area
     local zone = getWorld():getMetaGrid():getZoneAt(x, y, 0)
@@ -663,9 +665,14 @@ DOPhases.BombDrop = function(player)
             effect.y = square:getY()
             effect.z = square:getZ()
             effect.offset = 320
+            effect.name = "explobig"
             effect.frameCnt = 17
-            DOEffects.Add(effect)
-            
+            if isClient() then
+                sendClientCommand(getPlayer(), 'Schedule', 'AddEffect', effect)
+            else
+                table.insert(DOEffects.tab, effect)
+            end
+
             -- light blast
             local colors = {r=1.0, g=0.5, b=0.5}
             local lightSource = IsoLightSource.new(x, y, 0, colors.r, colors.g, colors.b, 60, 10)
@@ -728,6 +735,42 @@ DOPhases.BombDrop = function(player)
             end
         end
     end
+end
+
+DOPhases.GasDrop = function(player)
+
+    local square = player:getSquare()
+    local x, y = findOptimalPoint(player)
+    local svec = {}
+    table.insert(svec, {x=-3, y=-1})
+    table.insert(svec, {x=3, y=1})
+    table.insert(svec, {x=-1, y=-3})
+    table.insert(svec, {x=1, y=3})
+
+    for _, v in pairs(svec) do
+        local effect = {}
+        effect.x = x + v.x
+        effect.y = y + v.y
+        effect.z = 0
+        effect.offset = 300
+        effect.name = "mist"
+        effect.frameCnt = 60
+        effect.frameRnd = true
+        effect.repCnt = 10
+        if isClient() then
+            sendClientCommand(getPlayer(), 'Schedule', 'AddEffect', effect)
+        else
+            table.insert(DOEffects.tab, effect)
+        end
+    end
+
+    local colors = {r=0.2, g=1.0, b=0.3}
+    local lightSource = IsoLightSource.new(x, y, 0, colors.r, colors.g, colors.b, 60, 10)
+    getCell():addLamppost(lightSource)
+
+    local emitter = getWorld():getFreeEmitter(x, y, 0)
+    emitter:playSound("DOGas")
+    emitter:setVolumeAll(0.25)
 end
 
 DOPhases.A10 = function(player)

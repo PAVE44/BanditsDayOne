@@ -40,14 +40,14 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct 
     event.phase = "ChopperAlert"
-    table.insert(events, event)
+    table.insert(schedule, event)
     ct = ct + 5000
 
     event = {}
     event.pid = pid
     event.start = ct
     event.phase = "SpawnPolicePatrol"
-    table.insert(events, event)
+    table.insert(schedule, event)
     ct = ct + 179000
 
     -- TIME: 360,000
@@ -55,7 +55,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct + 100
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -65,24 +65,19 @@ function DOServer.Schedule.Create(player, args)
     ct = ct + 6000
 
     -- TIME: 366,000
-    for b=1, 3 do
-        local events = DOGroupPhases.Bombing(pid, ct)
+    for b=1, 8 do
+        local events = DOGroupPhases.Gas(pid, ct)
         for k, v in pairs(events) do table.insert(schedule, v) end
-        ct = ct + 20000
+        ct = ct + 7000
     end
 
     -- TIME: 426,000
-    event = {}
-    event.pid = pid
-    event.start = ct
-    event.phase = "EraserOn"
-    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
     event.start = ct + 100
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     -- TIME: 426,000
     -- A10s
@@ -110,12 +105,18 @@ function DOServer.Schedule.Create(player, args)
         ct = ct + 10000
     end
 
+    event = {}
+    event.pid = pid
+    event.start = ct
+    event.phase = "EraserOn"
+    table.insert(schedule, event)
+
     -- TIME: 552,000
     event = {}
     event.pid = pid
     event.start = ct 
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -144,7 +145,11 @@ function DOServer.Schedule.Create(player, args)
     for b=1, 8 do
         local events = DOGroupPhases.Bombing(pid, ct)
         for k, v in pairs(events) do table.insert(schedule, v) end
-        ct = ct + 9000
+        ct = ct + 1000
+
+        local events = DOGroupPhases.Gas(pid, ct)
+        for k, v in pairs(events) do table.insert(schedule, v) end
+        ct = ct + 8000
     end
 
     -- TIME: 672,000
@@ -152,7 +157,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -180,7 +185,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct + 100
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -214,13 +219,13 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct 
     event.phase = "ChopperAlert"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
     event.start = ct
     event.phase = "SpawnPolicePatrol"
-    table.insert(events, event)
+    table.insert(schedule, event)
     ct = ct + 8000
 
     -- TIME: 862,000
@@ -228,7 +233,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
 
     event = {}
     event.pid = pid
@@ -250,7 +255,7 @@ function DOServer.Schedule.Create(player, args)
     event.pid = pid
     event.start = ct + 100
     event.phase = "SpawnPeopleInHouses"
-    table.insert(events, event)
+    table.insert(schedule, event)
     
     event = {}
     event.pid = pid
@@ -263,7 +268,11 @@ function DOServer.Schedule.Create(player, args)
     for b=1, 35 do
         local events = DOGroupPhases.Bombing(pid, ct)
         for k, v in pairs(events) do table.insert(schedule, v) end
-        ct = ct + 7500
+        ct = ct + 3300
+
+        local events = DOGroupPhases.Gas(pid, ct)
+        for k, v in pairs(events) do table.insert(schedule, v) end
+        ct = ct + 3200
     end
 
     -- TIME: 1,167,500
@@ -307,7 +316,7 @@ function DOServer.Schedule.Create(player, args)
     ct = ct + 30000
     
     -- TIME 1,960,000
-    for i=1, 5 do
+    for i=1, 4 do
         event = {}
         event.pid = pid
         event.start = ct
@@ -317,7 +326,7 @@ function DOServer.Schedule.Create(player, args)
     end
 
     -- TIME 2,000,000
-    ct = ct + 70000
+    ct = ct + 72000
 
     -- END 2,330,000
     local events = DOGroupPhases.Kaboom(pid, ct)
@@ -326,7 +335,7 @@ function DOServer.Schedule.Create(player, args)
     event = {}
     event.pid = pid
     event.start = ct
-    event.phase = "TvOff"
+    event.phase = "TVOff"
     table.insert(schedule, event)
     ct = ct + 20000
 
@@ -392,6 +401,10 @@ function DOServer.Schedule.Kaboom(player, args)
             end
         end
     end
+end
+
+function DOServer.Schedule.AddEffect(player, args)
+    sendServerCommand('DOEffects', 'Add', args)
 end
 
 local onClientCommand = function(module, command, player, args)
