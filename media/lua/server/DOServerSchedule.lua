@@ -413,7 +413,6 @@ local onClientCommand = function(module, command, player, args)
         for k, v in pairs(args) do
             argStr = argStr .. " " .. k .. "=" .. tostring(v)
         end
-        print ("received " .. module .. "." .. command .. " "  .. argStr)
         DOServer[module][command](player, args)
         TransmitDOModData()
     end

@@ -8,7 +8,6 @@ function DOEraser.CheckErase()
     local pst = player:getHoursSurvived()
 
     if not DOEraser.State then 
-        print ("eraser off")
         return
     end
 
@@ -16,8 +15,6 @@ function DOEraser.CheckErase()
     if intensity < 2 then
         return
     end
-
-    print ("eraser on")
 
     local affectedZones = {}
     affectedZones.Forest = false
@@ -99,8 +96,6 @@ function DOEraser.CheckErase()
                     if objectCnt < 6 then
                         BanditBaseGroupPlacements.Junk (point.x-3, point.y-3, 0, 6, 6, 5)
                     end
-                else
-                    print (" NO SQUARE !!!")
                 end
             end
         end

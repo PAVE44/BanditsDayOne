@@ -94,6 +94,8 @@ DOEffects.Process = function()
                     end
                 end
             end
+        else
+            DOEffects.tab[i] = nil
         end
     end
 end

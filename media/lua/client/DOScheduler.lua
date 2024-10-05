@@ -38,10 +38,6 @@ end
 
 -- processes schedule phases
 function DOScheduler.CheckSchedule()
-    if ZombRand(10) == 1 then
-        -- print ("EVENTS:" .. #DOScheduler.Schedule)
-    end
-
     local player = getPlayer()
     local gmd = GetDOModData()
     
@@ -55,9 +51,6 @@ function DOScheduler.CheckSchedule()
     for i, event in pairs(DOScheduler.Schedule) do
         if event.start < ct and event.pid == pid then
             if DOPhases[event.phase] then
-                print ("------------------------------------------------")
-                print ("DayOne Scheduler: Running Phase: " .. event.phase)
-                print ("------------------------------------------------")
                 DOPhases[event.phase](player)
             end
             table.remove(DOScheduler.Schedule, i)
