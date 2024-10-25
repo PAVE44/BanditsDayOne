@@ -376,7 +376,6 @@ DOPhases.SpawnVeterans = function(player, cnt)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
-        local bandit = BanditCreator.MakeFromWave(config)
         local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
         if intensity > 0 then
             for i=1, intensity do
