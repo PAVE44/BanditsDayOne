@@ -28,6 +28,14 @@ function DOMenu.TVBroadCast(player, square)
     DOPhases.TVBroadCast(player)
 end
 
+function DOMenu.Flamethrow(player, square)
+    local effect = {}
+    effect.x = player:getX()
+    effect.y = player:getY()
+    effect.angle = player:getDirectionAngle()
+    DOFlameThrower.Add(effect)
+end
+
 function DOMenu.AddEvent(player, zombie)
     local gmd = GetDOModData()
     local pid = player:getDisplayName()
@@ -48,6 +56,7 @@ function DOMenu.WorldContextMenuPre(playerID, context, worldobjects, test)
         context:addOption("[DGB] Gas Drop", player, DOMenu.AddGas, square)
         context:addOption("[DGB] Kaboom", player, DOMenu.Kaboom, square)
         context:addOption("[DGB] TV Broadcast", player, DOMenu.TVBroadCast, square)
+        context:addOption("[DGB] Flamethrow", player, DOMenu.Flamethrow, square)
     end
 end
 

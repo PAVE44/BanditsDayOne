@@ -25,9 +25,33 @@ DOCivilians.ControlPopulation = function()
                 zCntClose = zCntClose + 1
             end
         end
+
+        local fz = getCell():getFakeZombieForHit()
+        local item = InventoryItemFactory.CreateItem("Base.RollingPin")
+        if dist > 80 then
+            if actor.id % 4 == 0 then
+                local actor = BanditZombie.GetInstanceById(actor.id)
+                if actor then
+                    actor:addBlood(0.6)
+                    SwipeStatePlayer.splash(actor, item, fz)
+
+                    actor:Hit(item, fz, 1.01, false, 1, false)
+                    if actor:getHealth() <= 0 then
+                        actor:setHealth(0)
+                        actor:clearAttachedItems()
+                        -- bandit:changeState(ZombieOnGroundState.instance())
+                        actor:setAttackedBy(getCell():getFakeZombieForHit())
+                        -- bandit:becomeCorpse()
+                    end
+                end
+            end
+        end
     end
 
-    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 20
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 22
+    -- print ("-----------------------------------------------------------------")
+    -- print ("-- POOL: " .. (cCnt * 100 / intensity) .. "% CC:" .. (cCntClose + 10) .. " ZC:" .. zCntClose)
+    -- print ("-----------------------------------------------------------------")
     if cCnt < intensity then
         if cCntClose + 10 < zCntClose then
             DOPhases.SpawnPeopleStreetFar(player)
