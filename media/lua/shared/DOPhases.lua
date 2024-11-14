@@ -317,7 +317,7 @@ DOPhases.SpawnPolicePatrol = function(player, cnt, outfit)
     end
 end
 
-DOPhases.SpawnArmy = function(player, cnt)
+DOPhases.SpawnArmy = function(player, cnt, outfit)
 
     config = {}
     config.clanId = 16
@@ -340,6 +340,9 @@ DOPhases.SpawnArmy = function(player, cnt)
         event.bandits = {}
         
         local bandit = BanditCreator.MakeFromWave(config)
+        if outfit then
+            bandit.outfit = outfit
+        end
         local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
         if intensity > 0 then
             for i=1, intensity do

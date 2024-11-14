@@ -41,6 +41,7 @@ cortmanMedicalMuldraugh.config = configNone
 cortmanMedicalMuldraugh.melee = "Base.Scalpel"
 cortmanMedicalMuldraugh.outfit = "Doctor"
 cortmanMedicalMuldraugh.cnt = 1
+table.insert(DOSpecialSpawn.Locations, cortmanMedicalMuldraugh)
 
 DOSpecialSpawn.ControlSpecialSpawn = function()
     if not DOSpecialSpawn.State then return end
@@ -49,7 +50,10 @@ DOSpecialSpawn.ControlSpecialSpawn = function()
 
     for i, location in pairs(DOSpecialSpawn.Locations) do
         if not location.state then
-            if px > location.x1 and px < location.x2 and py > location.y1 and py < location.y2 then
+            local lmx = (location.x1 + location.x1) / 2
+            local lmy = (location.y1 + location.y2) / 2
+            local dist = math.sqrt(math.pow(lmx - px, 2) + math.pow(lmy - py, 2))
+            if dist > 46 and dist < 100 then
                 location.state = true
                 DOSpecialSpawn.Spawn(location)
             end

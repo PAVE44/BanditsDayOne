@@ -76,19 +76,31 @@ DOEffects.Process = function()
                                 local dist = math.sqrt(math.pow(actor.x - effect.x, 2) + math.pow(actor.y - effect.y, 2))
                                 if dist < 3 then
                                     local character = BanditZombie.GetInstanceById(actor.id)
-                                    character:setHealth(character:getHealth() - 0.1)
+                                    local outfit = character:getOutfitName()
+                                    if outfit ~= "ZSArmySpecialOps" then
+                                        character:setHealth(character:getHealth() - 0.12)
+                                    end
                                 end
                             end
                             local player = getPlayer()
-                            local dist = math.sqrt(math.pow(player:getX() - effect.x, 2) + math.pow(player:getY() - effect.y, 2))
-                            if dist < 3 then
-                                local bodyDamage = player:getBodyDamage()
-                                local sick = bodyDamage:getFoodSicknessLevel()
-                                bodyDamage:setFoodSicknessLevel(sick + 2)
+                            local immune = false
+                            local mask = player:getWornItem("MaskEyes")
+                            if mask then
+                                if mask:getFullType() == "Base.Hat_GasMask" then 
+                                    immune = true 
+                                end
+                            end
+                            if not immune then
+                                local dist = math.sqrt(math.pow(player:getX() - effect.x, 2) + math.pow(player:getY() - effect.y, 2))
+                                if dist < 3 then
+                                    local bodyDamage = player:getBodyDamage()
+                                    local sick = bodyDamage:getFoodSicknessLevel()
+                                    bodyDamage:setFoodSicknessLevel(sick + 2)
 
-                                local stats = player:getStats()
-                                local drunk = stats:getDrunkenness()
-                                stats:setDrunkenness(drunk + 4)
+                                    local stats = player:getStats()
+                                    local drunk = stats:getDrunkenness()
+                                    stats:setDrunkenness(drunk + 4)
+                                end
                             end
                         end
                     end

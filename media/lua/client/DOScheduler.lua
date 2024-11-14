@@ -9,19 +9,26 @@ function DOScheduler.GenerateEvents()
 
     local startHour = gametime:getStartTimeOfDay()
     local startDay = gametime:getStartDay()
+    local startMonth = gametime:getStartMonth()
+    local startYear = gametime:getStartYear()
 
     local day = gametime:getDay()
     local hour = gametime:getHour()
+    local month = gametime:getMonth()
+    local year = gametime:getYear()
+
     local minute = gametime:getMinutes()
 
     -- in multiplayer getStartDay and getDay returns bullshit value, so this needs to be corrected
     local gamemode = getWorld():getGameMode()
     if gamemode == "Multiplayer" then 
-        startDay = startDay - 13 
+        startDay = startDay - 13
+        startYear = startYear - 19
+        month = month + 1
         day = day + 1
     end
 
-    local worldAge = (day * 24 + hour) - (startDay * 24 + startHour) 
+    local worldAge = (day * 24 + hour) - (startDay * 24 + startHour)
 
     DOCivilians.State = false
     if worldAge < 21 then
@@ -43,7 +50,13 @@ function DOScheduler.GenerateEvents()
         DOEraser.State = true
     end
 
-    if worldAge > 24 then return end
+    DOSpecialSpawn.State = false
+    if false and worldAge < 30 then
+        DOSpecialSpawn.State = true
+    end
+
+    if startMonth - month ~= 0 or startYear - year ~= 0 then return end 
+    if worldAge < 0 or worldAge > 24 then return end
 
     -- 09.00
     if worldAge < 1 then
@@ -89,10 +102,12 @@ function DOScheduler.GenerateEvents()
             DOPhases.UpdateVehicles(player)
         elseif minute == 20 then
             DOPhases.SpawnPeopleInHouses(player)
-        elseif minute == 44 then
+        elseif minute == 34 then
             DOPhases.SpawnFireman(player, 2)
-        elseif minute == 59 then
-            DOPhases.SpawnPolicePatrol(player, 3, "PoliceState")
+        elseif minute == 45 then
+            DOPhases.SpawnPolicePatrol(player, 2, "ZSPoliceSpecialOps")
+        elseif minute == 47 then
+            DOPhases.SpawnPolicePatrol(player, 3, "ZSPoliceSpecialOps")
         end
 
     -- 12.00
@@ -111,23 +126,27 @@ function DOScheduler.GenerateEvents()
 
     -- 13.00
     elseif worldAge < 5 then
-        if minute % 5 == 0 then
-            DOGroupPhases.Gas()
-        end
-
-        if minute == 16 then
-            DOPhases.SpawnPeopleInHouses(player)
-        end
-    -- 14.00
-    elseif worldAge < 6 then
         if minute % 20 == 0 then
             DOGroupPhases.A10()
         end
 
+        if minute == 4 then
+            DOPhases.SpawnPolicePatrol(player, 3, "ZSPoliceSpecialOps")
+        elseif minute == 16 then
+            DOPhases.SpawnPeopleInHouses(player)
+        elseif minute == 59 then
+            DOPhases.Siren(player)
+        end
+    -- 14.00
+    elseif worldAge < 6 then
+        if minute % 5 == 0 then
+            DOGroupPhases.Gas()
+        end
+
         if minute == 3 then
-            DOPhases.SpawnArmy(player, 2)
+            DOPhases.SpawnArmy(player, 2, "ZSArmySpecialOps")
         elseif minute == 44 then
-            DOPhases.SpawnArmy(player, 2)
+            DOPhases.SpawnArmy(player, 2, "ZSArmySpecialOps")
         elseif minute == 59 then
             DOPhases.Siren(player)
         end
