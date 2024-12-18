@@ -212,7 +212,7 @@ DOPhases.SpawnPeopleStreetFar = function(player)
     event.program.name = "Looter"
     event.program.stage = "Prepare"
 
-    local intensity = 3
+    local intensity = 2
     for i=1, intensity do
         local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,50))
         if spawnPoint then
@@ -534,7 +534,7 @@ DOPhases.SpawnPsychopaths = function(player, cnt)
     event.hostile = true
     event.occured = false
     event.program = {}
-    event.program.name = "Bandit"
+    event.program.name = "Looter"
     event.program.stage = "Prepare"
 
     local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,41))
