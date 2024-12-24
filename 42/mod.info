@@ -1,0 +1,7 @@
+name=Bandits Day One
+poster=poster.png
+id=BanditsDayOne
+description=Simulates the first day(s) of the apocalypse
+pack=effects
+author=Slayer
+require=\Bandits

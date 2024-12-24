@@ -1,0 +1,38 @@
+VERSION = 1,
+
+/***** GENERAL *****/
+
+option BanditsDayOne.General_BombingIntensity = {
+    type = enum, numValues=7, default = 5,
+    page = BanditsDayOne_General, translation = BanditsDayOne.BombingIntensity, valueTranslation=Rarity,
+}
+
+option BanditsDayOne.General_GasIntensity = {
+    type = enum, numValues=7, default = 5,
+    page = BanditsDayOne_General, translation = BanditsDayOne.GasIntensity, valueTranslation=Rarity,
+}
+
+option BanditsDayOne.General_WarthogIntensity = {
+    type = enum, numValues=7, default = 4,
+    page = BanditsDayOne_General, translation = BanditsDayOne.WarthogIntensity, valueTranslation=Rarity,
+}
+
+option BanditsDayOne.General_CivilianIntensity = {
+    type = enum, numValues=7, default = 5,
+    page = BanditsDayOne_General, translation = BanditsDayOne.CivilianIntensity, valueTranslation=Rarity,
+}
+
+option BanditsDayOne.General_ArmyIntensity = {
+    type = enum, numValues=7, default = 5,
+    page = BanditsDayOne_General, translation = BanditsDayOne.ArmyIntensity, valueTranslation=Rarity,
+}
+
+option BanditsDayOne.General_PoliceIntensity = {
+    type = enum, numValues=7, default = 5,
+    page = BanditsDayOne_General, translation = BanditsDayOne.PoliceIntensity, valueTranslation=Rarity,
+}
+
+option BanditsDayOne.General_GangsIntensity = {
+    type = enum, numValues=7, default = 5,
+    page = BanditsDayOne_General, translation = BanditsDayOne.GangsIntensity, valueTranslation=Rarity,
+}
