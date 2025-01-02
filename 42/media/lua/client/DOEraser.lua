@@ -102,4 +102,4 @@ function DOEraser.CheckErase()
     end
 end
 
-Events.EveryOneMinute.Add(DOEraser.CheckErase)
+-- Events.EveryOneMinute.Add(DOEraser.CheckErase) -- crashes b42

@@ -57,5 +57,5 @@ local onServerCommand = function(mod, command, args)
     end
 end
 
-Events.OnServerCommand.Add(onServerCommand)
-Events.OnPreUIDraw.Add(DOFlameThrower.Process)
+-- OnServerCommand.Add(onServerCommand)
+-- Events.OnPreUIDraw.Add(DOFlameThrower.Process)

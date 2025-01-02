@@ -20,7 +20,7 @@ DOEffects.Process = function()
     local cell = getCell()
     for i, effect in pairs(DOEffects.tab) do
 
-        local square = cell:getOrCreateGridSquare(effect.x, effect.y, effect.z+1)
+        local square = cell:getGridSquare(effect.x, effect.y, effect.z)
         if square then
 
             if not effect.repCnt then effect.repCnt = 1 end
@@ -32,7 +32,7 @@ DOEffects.Process = function()
 
                 dummy:setOffsetX(effect.offset)
                 dummy:setOffsetY(effect.offset)
-                -- square:AddTileObject(dummy)
+                dummy:setRenderYOffset(100)
                 square:AddSpecialObject(dummy)
                 if effect.frameRnd then
                     effect.frame = 1 + ZombRand(effect.frameCnt)

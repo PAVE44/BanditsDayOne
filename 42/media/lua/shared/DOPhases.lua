@@ -575,8 +575,9 @@ DOPhases.SpawnVehicleFireTruck  = function(player)
 end
 
 DOPhases.UpdateVehicles = function(player)
+
     local vehicleList = getCell():getVehicles()
-    
+
     for i=0, vehicleList:size()-1 do
         local vehicle = vehicleList:get(i)
         if vehicle and not vehicle:isEngineRunning() then
@@ -590,17 +591,18 @@ DOPhases.UpdateVehicles = function(player)
                     vehicle:setLightbarSirenMode(2)
                 end
             else
-                if ZombRand(16) == 1 then
-                    vehicle:setAlarmed(true)
-                    vehicle:triggerAlarm()
+                if ZombRand(1000) == 1 then
+                    -- vehicle:setAlarmed(true)
+                    -- vehicle:triggerAlarm()
                 end
             end
         end
     end
+
 end
 
 DOPhases.GetHelicopter = function(player)
-    testHelicopter()
+    -- testHelicopter()
 end
 
 DOPhases.Siren = function(player)

@@ -19,6 +19,8 @@ function DOScheduler.GenerateEvents()
 
     local minute = gametime:getMinutes()
 
+    -- print ("schedule cnt: " .. #DOScheduler.Schedule)
+
     -- in multiplayer getStartDay and getDay returns bullshit value, so this needs to be corrected
     local gamemode = getWorld():getGameMode()
     if gamemode == "Multiplayer" then 
@@ -196,10 +198,10 @@ function DOScheduler.GenerateEvents()
 
     -- 18.00
     elseif worldAge < 10 then
-        if minute % 20 == 0 then
+        if minute == 7 or minute == 17 or minute == 27 or minute == 37 or minute == 47 or minute == 57 then
             DOGroupPhases.A10()
         end
-        if minute % 10 == 0 then
+        if minute == 12 or minute == 22 or minute == 32 or minute == 42 or minute == 52 then
             DOGroupPhases.Bombing()
         end
 
@@ -210,10 +212,10 @@ function DOScheduler.GenerateEvents()
         end
     -- 19.00
     elseif worldAge < 11 then
-        if minute % 20 == 0 then
+        if minute == 7 or minute == 17 or minute == 27 or minute == 37 or minute == 47 or minute == 57 then
             DOGroupPhases.A10()
         end
-        if minute % 9 == 0 then
+        if minute == 12 or minute == 22 or minute == 32 or minute == 42 or minute == 52 then
             DOGroupPhases.Bombing()
         end
 
@@ -255,7 +257,7 @@ function DOScheduler.GenerateEvents()
         if minute % 5 == 0 then
             DOGroupPhases.Bombing()
         end
-        if minute % 5 == 0 then
+        if minute % 5 == 2 then
             DOGroupPhases.Gas()
         end
 

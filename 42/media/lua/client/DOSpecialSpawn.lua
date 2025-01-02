@@ -95,4 +95,4 @@ DOSpecialSpawn.Spawn = function(location)
     end
 end
 
-Events.EveryOneMinute.Add(DOSpecialSpawn.ControlSpecialSpawn)
+-- Events.EveryOneMinute.Add(DOSpecialSpawn.ControlSpecialSpawn)
