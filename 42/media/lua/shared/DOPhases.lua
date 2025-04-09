@@ -76,35 +76,69 @@ local function findOptimalPoint (player)
     return x, y
 end
 
+local function generateSpawnPoint(player, d, count)
+    
+   local cell = player:getCell()
+   local px = player:getX()
+   local py = player:getY()
+   local pz = player:getZ()
+
+   local spawnPoints = {}
+   table.insert(spawnPoints, {x=px+d, y=py+d, z=pz})
+   table.insert(spawnPoints, {x=px+d, y=py-d, z=pz})
+   table.insert(spawnPoints, {x=px-d, y=py+d, z=pz})
+   table.insert(spawnPoints, {x=px-d, y=py-d, z=pz})
+   table.insert(spawnPoints, {x=px+d, y=py, z=pz})
+   table.insert(spawnPoints, {x=px-d, y=py, z=pz})
+   table.insert(spawnPoints, {x=px, y=py+d, z=pz})
+   table.insert(spawnPoints, {x=px, y=py-d, z=pz})
+
+   local validSpawnPoints = {}
+   for i, sp in pairs(spawnPoints) do
+       local square = cell:getGridSquare(sp.x, sp.y, sp.z)
+       if square then
+           if square:isFree(false) then
+               table.insert(validSpawnPoints, sp)
+           end
+       end
+   end
+
+   if #validSpawnPoints >= 1 then
+       local p = 1 + ZombRand(#validSpawnPoints)
+       local spawnPoint = validSpawnPoints[p]
+       local ret = {}
+       for i=1, count do
+           table.insert(ret, spawnPoint)
+       end
+       return ret
+   end
+
+   return {}
+end
+
 DOPhases.SpawnFamilly = function(player)
 
-    config = {}
-    config.clanId = 1
-    config.hasRifleChance = 0
-    config.hasPistolChance = 0
-    config.rifleMagCount = 0
-    config.pistolMagCount = 0
-
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Companion"
-    event.program.stage = "Prepare"
-
-    event.x = player:getX() - 1 + ZombRand(2)
-    event.y = player:getY() - 1 + ZombRand(2)
-    event.bandits = {}
-    
-    local bandit = BanditCreator.MakeFromWave(config)
-    table.insert(event.bandits, bandit)
-    table.insert(event.bandits, bandit)
+    local args = {
+        cid = "c167d1e0-c077-4ee5-b353-88b374de193d", -- civilians
+        size = 2,
+        x = player:getX() - 1 + ZombRand(2),
+        y = player:getY() - 1 + ZombRand(2),
+        z = player:getZ(),
+        program = "Companion"
+    }
+    sendClientCommand(player, 'Spawner', 'Clan', args)
     addSound(player, player:getX(), player:getY(), player:getZ(), 40, 100)
-
-    sendClientCommand(player, 'Commands', 'SpawnGroup', event)
 end
 
 DOPhases.SpawnPeopleInHouses = function(player)
+
+    local intensity = SandboxVars.BanditsDayOne.General_CivilianIntensity - 1
+
+    local args = {
+        cid = "c167d1e0-c077-4ee5-b353-88b374de193d", -- civilians
+        size = intensity,
+        program = "Defend",
+    }
 
     local buildings = {}
     for y = -80, 80 do
@@ -120,20 +154,6 @@ DOPhases.SpawnPeopleInHouses = function(player)
         end
     end
 
-    config = {}
-    config.hasRifleChance = 5
-    config.hasPistolChance = 45
-    config.rifleMagCount = 1
-    config.pistolMagCount = 3
-    config.clanId = 1
-
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Defend"
-    event.program.stage = "Prepare"
-
     for _, building in pairs(buildings) do
         local room = building:getRandomRoom()
         if room then
@@ -142,18 +162,11 @@ DOPhases.SpawnPeopleInHouses = function(player)
                 local spawnSquare = roomDef:getFreeSquare()
                 if spawnSquare then
                     if ZombRand(3) > 0 then
-                        event.x = spawnSquare:getX()
-                        event.y = spawnSquare:getY()
-                        event.bandits = {}
-                        
-                        local bandit = BanditCreator.MakeFromWave(config)
-                        local intensity = SandboxVars.BanditsDayOne.General_CivilianIntensity - 1
-                        if intensity > 0 then
-                            for i=1, intensity do
-                                table.insert(event.bandits, bandit)
-                            end
-                            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-                        end
+                        args.x = spawnSquare:getX()
+                        args.y = spawnSquare:getY()
+                        args.z = spawnSquare:getZ()
+
+                        sendClientCommand(player, 'Spawner', 'Clan', args)
                     end
                 end
             end
@@ -163,397 +176,235 @@ end
 
 DOPhases.SpawnPeopleStreet = function(player, cnt)
 
-    -- PEOPLE IN THE STREET
-    config = {}
-    config.clanId = 1
-    config.hasRifleChance = 0
-    config.hasPistolChance = 27
-    config.rifleMagCount = 0
-    config.pistolMagCount = 2
-
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
-
     local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * cnt
+
+    local args = {
+        cid = "c167d1e0-c077-4ee5-b353-88b374de193d", -- civilians
+        size = 2,
+        program = "Looter"
+    }
+    
     for i=1, intensity do
-        local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(25,45))
-        if spawnPoint then
-            event.x = spawnPoint.x
-            event.y = spawnPoint.y
-            event.bandits = {}
+        local spawnPoint = generateSpawnPoint(player, ZombRand(25, 45), 1)
+        if spawnPoint[1] then
+            args.x = spawnPoint[1].x
+            args.y = spawnPoint[1].y
+            args.z = spawnPoint[1].z
             
-            local bandit = BanditCreator.MakeFromWave(config)
-            table.insert(event.bandits, bandit)
-            table.insert(event.bandits, bandit)
-            
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
+            sendClientCommand(player, 'Spawner', 'Clan', args)
         end
     end
 end
 
 DOPhases.SpawnPeopleStreetFar = function(player)
 
-    -- PEOPLE IN THE STREET
-    config = {}
-    config.clanId = 1
-    config.hasRifleChance = 0
-    config.hasPistolChance = 30
-    config.rifleMagCount = 0
-    config.pistolMagCount = 2
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1)
 
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
-
-    local intensity = 2
+    local args = {
+        cid = "c167d1e0-c077-4ee5-b353-88b374de193d", -- civilians
+        size = 2,
+        program = "Looter"
+    }
+    
     for i=1, intensity do
-        local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,50))
-        if spawnPoint then
-            event.x = spawnPoint.x
-            event.y = spawnPoint.y
-            event.bandits = {}
+        local spawnPoint = generateSpawnPoint(player, ZombRand(45, 75), 1)
+        if spawnPoint[1] then
+            args.x = spawnPoint[1].x
+            args.y = spawnPoint[1].y
+            args.z = spawnPoint[1].z
             
-            local bandit = BanditCreator.MakeFromWave(config)
-            table.insert(event.bandits, bandit)
-            
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-
-            local allfree = true
-            for x=spawnPoint.x-2, spawnPoint.x+2 do
-                for y=spawnPoint.y-2, spawnPoint.y+2 do
-                    local testSquare = getCell():getGridSquare(x, y, 0)
-                    if not testSquare or not testSquare:isFree(false) then
-                        allfree = false
-                    end
-                end
-            end
-
+            sendClientCommand(player, 'Spawner', 'Clan', args)
         end
     end
 end
 
 DOPhases.SpawnFireman = function(player, cnt)
 
-    config = {}
-    config.clanId = 1
-    config.hasRifleChance = 0
-    config.hasPistolChance = 0
-    config.rifleMagCount = 0
-    config.pistolMagCount = 0
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "989f4faf-53f2-4f8f-9603-496fb3efcb6a", -- firemen
+        size = intensity,
+        program = "Looter"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(25,35))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(25, 35), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        bandit.outfit = "FiremanFullSuit"
-        bandit.weapons.melee = "Base.Axe"
-
-        local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-
-            local args = {type="Base.PickUpTruckLightsFire", x=spawnPoint.x, y=spawnPoint.y, engine=true, lights=true, lightbar=true}
-            sendClientCommand(player, 'Commands', 'VehicleSpawn', args)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnPolicePatrol = function(player, cnt, outfit)
-    -- POLICE PATROL
-    config = {}
-    config.clanId = 6
-    config.hasRifleChance = 10
-    config.hasPistolChance = 100
-    config.rifleMagCount = 2
-    config.pistolMagCount = 4
 
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local intensity = (SandboxVars.BanditsDayOne.General_PoliceIntensity - 1) * cnt
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(25,35))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local cids = {
+        "c4e24888-70f9-43ea-80f8-1bb2f6b9bd88", -- policeblue
+        "33894253-b965-4eb3-94e1-4d642cadac88", -- policegray
+        "526e57b9-52cf-42a8-a17b-50e32e4d33f3", -- policeriot
+        "3a424953-fa5b-418f-8f11-462e52bfd574", -- rangers
+        "b6c61446-ad6c-4529-9bac-751b9b64843f", -- swat
+    }
+
+    local args = {
+        cid = BanditUtils.Choice(cids),
+        size = intensity,
+        program = "Looter"
+    }
+
+    local spawnPoint = generateSpawnPoint(player, ZombRand(25, 35), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        if outfit then
-            bandit.outfit = outfit
-        end
-        local intensity = (SandboxVars.BanditsDayOne.General_PoliceIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-
-            local args = {type="Base.PickUpVanLightsPolice", x=spawnPoint.x, y=spawnPoint.y, engine=true, lights=true, lightbar=true}
-            sendClientCommand(player, 'Commands', 'VehicleSpawn', args)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnArmy = function(player, cnt, outfit)
 
-    config = {}
-    config.clanId = 16
-    config.hasRifleChance = 100
-    config.hasPistolChance = 100
-    config.rifleMagCount = 8
-    config.pistolMagCount = 4
+    local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "d2860ee6-7e18-4132-ad42-8fb3a34ea499", -- armygreen
+        size = intensity,
+        program = "Looter"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(30,45))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(30, 45), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        if outfit then
-            bandit.outfit = outfit
-        end
-        local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnVeterans = function(player, cnt)
 
-    -- VETERANS
-    config = {}
-    config.clanId = 8
-    config.hasRifleChance = 100
-    config.hasPistolChance = 100
-    config.rifleMagCount = 8
-    config.pistolMagCount = 4
+    local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Companion"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "c4878ebb-c8e5-4932-8850-370ee9c77d61", -- veterans
+        size = intensity,
+        program = "Companion"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,50))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(30, 45), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnScientists = function(player, cnt)
     
-    config = {}
-    config.clanId = 12
-    config.hasRifleChance = 50
-    config.hasPistolChance = 100
-    config.rifleMagCount = 2
-    config.pistolMagCount = 4
+    local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = false
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "9bf4882b-0622-4e77-82c1-feee90b566b4", -- hazmats
+        size = intensity,
+        program = "Looter"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,55))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(30, 45), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        local intensity = (SandboxVars.BanditsDayOne.General_ArmyIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnGang = function(player, cnt)
     
-    config = {}
-    config.clanId = 9
-    config.hasRifleChance = 0
-    config.hasPistolChance = 25
-    config.rifleMagCount = 2
-    config.pistolMagCount = 3
+    local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = true
-    event.occured = false
-    event.program = {}
-    event.program.name = "Bandit"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "f3ad89be-9368-4df7-a63b-0c315a96f23b", -- bikers
+        size = intensity,
+        program = "Looter"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(40,45))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(40, 46), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnBandits = function(player, cnt)
     
-    config = {}
-    config.clanId = 13
-    config.hasRifleChance = 1
-    config.hasPistolChance = 37
-    config.rifleMagCount = 0
-    config.pistolMagCount = 3
+    local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = true
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "72fbcd15-a81b-476a-8c25-1b2caea694de", -- bandits
+        size = intensity,
+        program = "Looter"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(30,50))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(40, 46), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnInmates = function(player, cnt)
     
-    config = {}
-    config.clanId = 5
-    config.hasRifleChance = 3
-    config.hasPistolChance = 22
-    config.rifleMagCount = 2
-    config.pistolMagCount = 3
+    local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
 
-    local event = {}
-    event.hostile = true
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local args = {
+        cid = "c15cc316-41f9-4c2c-b71a-3a3fb58c247d", -- inmates
+        size = intensity,
+        program = "Looter"
+    }
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(30,40))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local spawnPoint = generateSpawnPoint(player, ZombRand(30, 42), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
         
-        local bandit = BanditCreator.MakeFromWave(config)
-        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-        end
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
 end
 
 DOPhases.SpawnPsychopaths = function(player, cnt)
-    
-    config = {}
-    config.clanId = 2
-    config.hasRifleChance = 0
-    config.hasPistolChance = 0
-    config.rifleMagCount = 0
-    config.pistolMagCount = 0
 
-    local event = {}
-    event.hostile = true
-    event.occured = false
-    event.program = {}
-    event.program.name = "Looter"
-    event.program.stage = "Prepare"
+    local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
 
-    local spawnPoint = BanditScheduler.GenerateSpawnPoint(player, ZombRand(35,41))
-    if spawnPoint then
-        event.x = spawnPoint.x
-        event.y = spawnPoint.y
-        event.bandits = {}
+    local args = {
+        cid = "51a68231-8870-4508-8c09-bd906b4411d2", -- mentals
+        size = intensity,
+        program = "Looter"
+    }
 
-        local bandit = BanditCreator.MakeFromWave(config)
-        bandit.outfit = "HospitalPatient"
-
-        local intensity = (SandboxVars.BanditsDayOne.General_GangsIntensity - 1) * cnt
-        if intensity > 0 then
-            for i=1, intensity do
-                table.insert(event.bandits, bandit)
-            end
-            sendClientCommand(player, 'Commands', 'SpawnGroup', event)
-        end
+    local spawnPoint = generateSpawnPoint(player, ZombRand(30, 42), 1)
+    if spawnPoint[1] then
+        args.x = spawnPoint[1].x
+        args.y = spawnPoint[1].y
+        args.z = spawnPoint[1].z
+        
+        sendClientCommand(player, 'Spawner', 'Clan', args)
     end
+
 end
 
 DOPhases.SpawnVehicleFireTruck  = function(player)
@@ -602,7 +453,7 @@ DOPhases.UpdateVehicles = function(player)
 end
 
 DOPhases.GetHelicopter = function(player)
-    -- testHelicopter()
+    testHelicopter()
 end
 
 DOPhases.Siren = function(player)
@@ -656,7 +507,7 @@ DOPhases.Kaboom = function(player)
         local dist = math.sqrt(math.pow(z.x - px, 2) + math.pow(z.y - py, 2))
         if dist < r then
             local character = BanditZombie.GetInstanceById(id)
-            if character and character:isOutside() then
+            if character and character:isOutside() and not character:isOnKillDone() then
                 character:Hit(fakeItem, fakeZombie, 50, false, 1, false)
                 character:setCrawler(true)
                 character:setHealth(0)
@@ -755,13 +606,14 @@ DOPhases.BombDrop = function(player)
             effect.x = square:getX()
             effect.y = square:getY()
             effect.z = square:getZ()
-            effect.offset = 320
-            effect.name = "explo_big_01"
+            effect.size = 640
+            effect.colors = {r=0.1, g=0.7, b=0.2, a=0.2}
+            effect.name = "explobig"
             effect.frameCnt = 17
             if isClient() then
                 sendClientCommand(getPlayer(), 'Schedule', 'AddEffect', effect)
             else
-                table.insert(DOEffects.tab, effect)
+                table.insert(DOEffects2.tab, effect)
             end
 
             -- light blast
@@ -819,7 +671,9 @@ DOPhases.BombDrop = function(player)
                         end
                         local zombie = square:getZombie()
                         if zombie then
-                            zombie:Hit(fakeItem, cell:getFakeZombieForHit(), 50, false, 1, false)
+                            if not zombie:isOnKillDone() then
+                                zombie:Hit(fakeItem, cell:getFakeZombieForHit(), 50, false, 1, false)
+                            end
                         end
                     end
                 end
@@ -843,17 +697,17 @@ DOPhases.GasDrop = function(player)
         effect.x = x + v.x
         effect.y = y + v.y
         effect.z = 0
-        effect.offset = 300
-        effect.name = "mist_01"
+        effect.size = 600
         effect.poison = true
         effect.colors = {r=0.1, g=0.7, b=0.2, a=0.2}
+        effect.name = "mist"
         effect.frameCnt = 60
-        effect.frameRnd = true
-        effect.repCnt = 10
+        effect.repCnt = 9
+
         if isClient() then
             sendClientCommand(getPlayer(), 'Schedule', 'AddEffect', effect)
         else
-            table.insert(DOEffects.tab, effect)
+            table.insert(DOEffects2.tab, effect)
         end
     end
 
@@ -892,7 +746,7 @@ DOPhases.A10 = function(player)
                 local fakeZombie = getCell():getFakeZombieForHit()
                 for id, zombie in pairs(killList) do
                     local character = BanditZombie.GetInstanceById(id)
-                    if character and character:isOutside() then
+                    if character and character:isOutside() and not character:isOnKillDone() then
                         character:Hit(fakeItem, fakeZombie, 1 + ZombRand(20), false, 1, false)
                         -- SwipeStatePlayer.splash(character, fakeItem, fakeZombie)
                     end

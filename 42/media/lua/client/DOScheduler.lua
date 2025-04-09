@@ -89,6 +89,7 @@ function DOScheduler.GenerateEvents()
     elseif worldAge < 2 then
         if minute == 11 then
             DOPhases.SpawnPolicePatrol(player, 1, "Police")
+            DOPhases.GetHelicopter()
         elseif minute == 12 then
             DOPhases.UpdateVehicles(player)
         elseif minute == 44 then

@@ -48,7 +48,7 @@ DOCivilians.ControlPopulation = function()
         end
     end
 
-    local intensity = ((SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 2) ^ 2
+    local intensity = (SandboxVars.BanditsDayOne.General_CivilianIntensity - 1) * 10
     -- print ("-----------------------------------------------------------------")
     -- print ("-- POOL: " .. (cCnt * 100 / intensity) .. "% CC:" .. (cCntClose + 10) .. " ZC:" .. zCntClose)
     -- print ("-----------------------------------------------------------------")

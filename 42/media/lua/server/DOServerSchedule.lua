@@ -38,7 +38,7 @@ function DOServer.Schedule.Kaboom(player, args)
 end
 
 function DOServer.Schedule.AddEffect(player, args)
-    sendServerCommand('DOEffects', 'Add', args)
+    sendServerCommand('DOEffects2', 'Add', args)
 end
 
 local onClientCommand = function(module, command, player, args)

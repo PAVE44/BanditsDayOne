@@ -5,3 +5,4 @@ description=Simulates the first day(s) of the apocalypse
 pack=effects
 author=Slayer
 require=\Bandits
+incompatible=\BetterFPS_B42,\TrueCrawlStealth,\TrueCrawl
