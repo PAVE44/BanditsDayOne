@@ -443,8 +443,8 @@ DOPhases.UpdateVehicles = function(player)
                 end
             else
                 if ZombRand(1000) == 1 then
-                    -- vehicle:setAlarmed(true)
-                    -- vehicle:triggerAlarm()
+                    vehicle:setAlarmed(true)
+                    vehicle:triggerAlarm()
                 end
             end
         end

@@ -20,8 +20,8 @@
 	clothing: Left_RingFinger = Base.Ring_Left_RingFinger_Gold
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -45,8 +45,8 @@
 	clothing: Shirt = Base.Shirt_Ranger
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -72,8 +72,8 @@
 	clothing: Jacket = Base.Jacket_Ranger
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -98,8 +98,8 @@
 	clothing: Shirt = Base.Shirt_Ranger
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -123,8 +123,8 @@
 	clothing: Shirt = Base.Shirt_Ranger
 	clothing: Jacket = Base.Jacket_Ranger
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: primary = Base.Shotgun
 	weapons: melee = Base.BareHands
 	ammo: primary = 2
@@ -149,8 +149,8 @@
 	clothing: Jacket = Base.Jacket_Ranger
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -174,8 +174,8 @@
 	clothing: Tshirt = Base.Tshirt_Ranger
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -200,8 +200,8 @@
 	clothing: Shirt = Base.Shirt_Ranger
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Ranger
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 2
@@ -283,8 +283,8 @@
 	clothing: Sweater = Base.HoodieDOWN_WhiteTINT
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.BaseballBat
 	ammo: secondary = 2
@@ -313,8 +313,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: AmmoStrap = Base.AmmoStrap_Shells
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.DoubleBarrelShotgun
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.Crowbar
@@ -345,8 +345,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: AmmoStrap = Base.AmmoStrap_Shells
 	clothing: Pants = Base.Trousers_CamoUrban
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.HandAxe
@@ -377,8 +377,8 @@
 	clothing: LeftWrist = Base.Bracelet_ChainLeftSilver
 	clothing: AmmoStrap = Base.AmmoStrap_Shells
 	clothing: Pants = Base.TrousersMesh_Leather
-	clothing: Shoes = Base.Shoes_BlackBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_BlackBoots
 	weapons: primary = Base.Shotgun
 	weapons: melee = Base.HandAxe
 	ammo: primary = 2
@@ -405,8 +405,8 @@
 	clothing: Jacket = Base.Jacket_LeatherIronRodent
 	clothing: AmmoStrap = Base.AmmoStrap_Shells
 	clothing: Pants = Base.TrousersMesh_DenimLight
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.DoubleBarrelShotgun
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.BaseballBat_Spiked
@@ -491,8 +491,8 @@
 	clothing: LeftWrist = Base.Bracelet_ChainLeftSilver
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: Pants = Base.TrousersMesh_Leather
-	clothing: Shoes = Base.Shoes_BlackBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_BlackBoots
 	weapons: primary = Base.HuntingRifle
 	weapons: melee = Base.HandAxeForged
 	ammo: primary = 2
@@ -518,8 +518,8 @@
 	clothing: Jacket = Base.Jacket_Leather_Punk
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: Pants = Base.TrousersMesh_Leather
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Wrench
 	ammo: secondary = 3
@@ -544,8 +544,8 @@
 	clothing: Jacket = Base.Jacket_Leather_Punk
 	clothing: UnderwearBottom = Base.Boxers_Silk_Black
 	clothing: Pants = Base.Trousers_Denim
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.DoubleBarrelShotgunSawnoff
 	weapons: secondary = Base.Revolver_Short
 	weapons: melee = Base.HandguardDagger
@@ -572,8 +572,8 @@
 	clothing: JacketSuit = Base.JacketLong_Black
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.TrousersMesh_DenimLight
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.DoubleBarrelShotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.Crowbar
@@ -602,8 +602,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: LeftWrist = Base.WristWatch_Left_DigitalBlack
 	clothing: Pants = Base.Trousers_LeatherBlack
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.Cudgel_Spike
 	ammo: secondary = 2
@@ -630,8 +630,8 @@
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Black
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_LeatherBlack
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.BaseballBat_Spiked
 	ammo: secondary = 3
@@ -726,8 +726,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HandAxe
@@ -755,8 +755,9 @@
 	clothing: Tshirt = Base.Tshirt_Profession_VeterenGreen
 	clothing: Left_RingFinger = Base.Ring_Left_RingFinger_Gold
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_FullFace = Base.MakeUp_CamoFullFace1
 	weapons: primary = Base.VarmintRifle
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.HuntingKnife
@@ -789,8 +790,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HandAxe
@@ -822,8 +823,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HandAxe
@@ -855,8 +856,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.AssaultRifle2
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HandAxe
@@ -887,8 +888,8 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HandAxe
@@ -917,8 +918,8 @@
 	clothing: TorsoExtraVest = Base.Vest_Hunting_Grey
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: ShortPants = Base.Shorts_CamoGreenLong
-	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HandAxe
@@ -951,8 +952,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoDesert
-	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBootsDesert
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.SwitchKnife
@@ -985,8 +986,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_308
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.KnifeButterfly
@@ -1015,8 +1016,8 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.AssaultRifle2
 	weapons: secondary = Base.Pistol3
 	weapons: melee = Base.Machete
@@ -1047,8 +1048,8 @@
 	clothing: AmmoStrap = Base.AmmoStrap_Bullets_223
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: ShortPants = Base.Shorts_CamoGreenLong
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.VarmintRifle
 	weapons: secondary = Base.Pistol3
 	weapons: melee = Base.LargeKnife
@@ -1079,8 +1080,9 @@
 	clothing: ShortPants = Base.Shorts_CamoGreenLong
 	clothing: Knee_Right = Base.Kneepad_Right_Military
 	clothing: Knee_Left = Base.Kneepad_Left_Military
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_Eyes = Base.MakeUp_RedStripes2
 	weapons: primary = Base.AssaultRifle2
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.Machete
@@ -1115,8 +1117,8 @@
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Knee_Right = Base.Kneepad_Right_Tactical
 	clothing: Knee_Left = Base.Kneepad_Left_Tactical
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Heavy
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.VarmintRifle
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -1150,8 +1152,8 @@
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Knee_Right = Base.Kneepad_Right_Tactical
 	clothing: Knee_Left = Base.Kneepad_Left_Tactical
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Heavy
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1187,8 +1189,8 @@
 	clothing: Thigh_Left = Base.ThighBodyArmour_L_SWAT
 	clothing: Knee_Right = Base.Kneepad_Right_Tactical
 	clothing: Knee_Left = Base.Kneepad_Left_Tactical
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Heavy
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -1223,8 +1225,8 @@
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Knee_Right = Base.Kneepad_Right_Tactical
 	clothing: Knee_Left = Base.Kneepad_Left_Tactical
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Heavy
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -1259,8 +1261,8 @@
 	clothing: Thigh_Left = Base.ThighBodyArmour_L_SWAT
 	clothing: Knee_Right = Base.Kneepad_Right_Tactical
 	clothing: Knee_Left = Base.Kneepad_Left_Tactical
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Heavy
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -1290,8 +1292,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -1317,8 +1319,8 @@
 	clothing: Eyes = Base.Glasses_CatsEye_Sun
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Pistol3
 	weapons: melee = Base.SteelBar
 	ammo: secondary = 1
@@ -1341,8 +1343,8 @@
 	general: exp3 = 0
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: BeltExtra = Base.HolsterSimple_Black
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.BareHands
 	ammo: secondary = 1
@@ -1365,8 +1367,8 @@
 	general: exp3 = 0
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.IronBar
 	ammo: secondary = 2
@@ -1390,8 +1392,8 @@
 	general: exp3 = 0
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.DoubleBarrelShotgun
 	weapons: melee = Base.KnifeButterfly
 	ammo: primary = 1
@@ -1417,8 +1419,8 @@
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
 	clothing: BeltExtra = Base.HolsterSimple_Black
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.BoltCutters
 	ammo: secondary = 2
@@ -1443,8 +1445,8 @@
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
 	clothing: BeltExtra = Base.HolsterSimple_Black
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.Crowbar
@@ -1472,8 +1474,8 @@
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
 	clothing: BeltExtra = Base.HolsterSimple_Brown
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Ankle
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: melee = Base.BareHands
 
 [23996fcb-2672-4dee-9904-537c84bdc6e2]
@@ -1496,8 +1498,8 @@
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
 	clothing: BeltExtra = Base.HolsterSimple_Black
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_White
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol3
 	weapons: melee = Base.Axe
 	ammo: secondary = 1
@@ -1522,8 +1524,8 @@
 	clothing: Eyes = Base.Glasses_Prescription_Round_Shades
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver_Long
 	ammo: secondary = 2
 
@@ -1546,8 +1548,8 @@
 	clothing: Eyes = Base.Glasses_70s_Gold
 	clothing: Boilersuit = Base.Boilersuit_Prisoner
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Revolver_Short
 	weapons: melee = Base.KnifeButterfly
 	ammo: secondary = 2
@@ -1573,8 +1575,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 3
@@ -1602,8 +1604,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 3
@@ -1630,8 +1632,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
@@ -1661,8 +1663,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 3
@@ -1688,8 +1690,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
@@ -1719,8 +1721,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
@@ -1748,8 +1750,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 3
@@ -1777,8 +1779,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_PoliceGrey
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
 	ammo: secondary = 3
@@ -1804,8 +1806,8 @@
 	clothing: Shirt = Base.Shirt_PoliceBlue
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1831,8 +1833,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1858,8 +1860,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: LeftWrist = Base.WristWatch_Left_DigitalBlack
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1886,8 +1888,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -1915,8 +1917,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: LeftWrist = Base.WristWatch_Left_DigitalBlack
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1941,8 +1943,8 @@
 	clothing: Shirt = Base.Shirt_PoliceBlue
 	clothing: BeltExtra = Base.HolsterSimple
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1967,8 +1969,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -1994,8 +1996,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: LeftWrist = Base.WristWatch_Left_DigitalBlack
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -2021,8 +2023,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2050,8 +2052,8 @@
 	clothing: Shirt = Base.Shirt_PoliceBlue
 	clothing: LeftWrist = Base.WristWatch_Left_DigitalBlack
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -2076,8 +2078,8 @@
 	clothing: Shirt = Base.Shirt_PoliceBlue
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -2102,8 +2104,8 @@
 	clothing: Jacket = Base.Jacket_Police
 	clothing: BeltExtra = Base.HolsterSimple
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
 	ammo: secondary = 3
@@ -2127,8 +2129,8 @@
 	clothing: Tshirt = Base.Tshirt_CamoGreen
 	clothing: FullTop = Base.Ghillie_Top
 	clothing: Pants = Base.Ghillie_Trousers
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.VarmintRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.FightingKnife
@@ -2162,8 +2164,8 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.VarmintRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2195,8 +2197,9 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_FullFace = Base.MakeUp_CamoFullFace1
 	weapons: primary = Base.VarmintRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2229,8 +2232,8 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.HuntingRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2263,8 +2266,9 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_FullFace = Base.MakeUp_CamoFullFace2
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2296,8 +2300,9 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_FullFace = Base.MakeUp_CamoFullFace1
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.HuntingKnife
@@ -2328,8 +2333,9 @@
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Black
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_Eyes = Base.MakeUp_Football
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.LargeKnife
@@ -2361,8 +2367,9 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_FullFace = Base.MakeUp_CamoFullFace1
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2395,8 +2402,8 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2428,8 +2435,8 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2462,8 +2469,9 @@
 	clothing: LeftWrist = Base.WristWatch_Left_ClassicMilitary
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_CamoGreen
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
+	clothing: MakeUp_FullFace = Base.MakeUp_CamoFullFace2
 	weapons: primary = Base.AssaultRifle
 	weapons: secondary = Base.Pistol2
 	weapons: melee = Base.Machete
@@ -2494,8 +2502,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2525,8 +2533,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2556,8 +2564,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2587,8 +2595,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2618,8 +2626,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2649,8 +2657,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2680,8 +2688,8 @@
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
 	clothing: BeltExtra = Base.HolsterSimple_Black
 	clothing: Pants = Base.Trousers_Police
-	clothing: Shoes = Base.Shoes_Black
 	clothing: Socks = Base.Socks_Long_Black
+	clothing: Shoes = Base.Shoes_Black
 	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Pistol
 	weapons: melee = Base.Nightstick
@@ -2730,8 +2738,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [a83ba955-fe4e-4cab-a602-dfe86273534a]
@@ -2755,8 +2763,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [9f2aecba-b768-4066-a9e6-9fa53139ee1c]
@@ -2780,8 +2788,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [18794514-dbde-4adb-ae3d-45e4ce0106e9]
@@ -2805,8 +2813,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [dd0b2203-ccfe-4714-a505-6f95d47f4691]
@@ -2830,8 +2838,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [fe4eeb23-e691-4ad8-bb0d-83e2e1cdae2a]
@@ -2854,8 +2862,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 	bag: name = Base.Bag_MedicalBag
 
@@ -2880,8 +2888,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [d8948cc3-3461-42af-8aa0-e9273208fde6]
@@ -2904,8 +2912,8 @@
 	clothing: Jacket = Base.Jacket_Fireman
 	clothing: Hands = Base.Gloves_FingerlessLeatherGloves_Brown
 	clothing: Pants = Base.Trousers_Fireman
-	clothing: Shoes = Base.Shoes_ArmyBoots
 	clothing: Socks = Base.Socks_Ankle_Black
+	clothing: Shoes = Base.Shoes_ArmyBoots
 	weapons: melee = Base.Axe
 
 [ed2f7df0-e8f3-4756-b99e-2ff14bb020ff]
@@ -3515,8 +3523,8 @@
 	clothing: UnderwearBottom = Base.Briefs_White
 	clothing: BeltExtra = Base.HolsterSimple_Brown
 	clothing: Pants = Base.Trousers_Sheriff
-	clothing: Shoes = Base.Shoes_Brown
 	clothing: Socks = Base.Socks_Long_White
+	clothing: Shoes = Base.Shoes_Brown
 	weapons: primary = Base.DoubleBarrelShotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.BareHands
