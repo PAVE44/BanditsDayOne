@@ -212,9 +212,9 @@
 	general: name = Bandit_05
 	general: female = false
 	general: skin = 1
-	general: hairType = 33
+	general: hairType = 37
 	general: beardType = 8
-	general: hairColor = 2
+	general: hairColor = 19
 	general: health = 5
 	general: strength = 5
 	general: endurance = 5
@@ -222,16 +222,13 @@
 	general: exp1 = 0
 	general: exp2 = 0
 	general: exp3 = 0
-	clothing: Hat = Base.Hat_BaseballCapKY
 	clothing: Mask = Base.Hat_BandanaMask_Green
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
 	clothing: Shirt = Base.Shirt_Workman
 	clothing: Sweater = Base.HoodieDOWN_WhiteTINT
 	clothing: Pants = Base.Trousers_Fireman
 	clothing: Shoes = Base.Shoes_ArmyBoots
-	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.Axe
-	ammo: secondary = 2
 	bag: name = Base.Bag_HikingBag_Travel
 
 [87a2ba83-f1b2-4b6c-a6f6-b087cb242702]
@@ -240,7 +237,7 @@
 	general: name = Bandit_04
 	general: female = false
 	general: skin = 4
-	general: hairType = 14
+	general: hairType = 37
 	general: beardType = 8
 	general: hairColor = 11
 	general: health = 5
@@ -267,7 +264,7 @@
 	general: name = Bandit_03
 	general: female = false
 	general: skin = 3
-	general: hairType = 1
+	general: hairType = 37
 	general: beardType = 4
 	general: hairColor = 1
 	general: health = 5
@@ -277,7 +274,6 @@
 	general: exp1 = 0
 	general: exp2 = 0
 	general: exp3 = 0
-	clothing: Mask = Base.Hat_BalaclavaFace
 	clothing: TankTop = Base.Vest_DefaultTEXTURE
 	clothing: Shirt = Base.Shirt_Workman
 	clothing: Sweater = Base.HoodieDOWN_WhiteTINT
@@ -285,6 +281,7 @@
 	clothing: Pants = Base.Trousers_CamoGreen
 	clothing: Socks = Base.Socks_Long_Black
 	clothing: Shoes = Base.Shoes_ArmyBoots
+	tint: Sweater = 1730099
 	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.BaseballBat
 	ammo: secondary = 2
@@ -311,15 +308,10 @@
 	clothing: Shirt = Base.Shirt_Workman
 	clothing: Sweater = Base.HoodieDOWN_WhiteTINT
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
-	clothing: AmmoStrap = Base.AmmoStrap_Shells
 	clothing: Pants = Base.Trousers_CamoGreen
 	clothing: Socks = Base.Socks_Long_Black
 	clothing: Shoes = Base.Shoes_ArmyBoots
-	weapons: primary = Base.DoubleBarrelShotgun
-	weapons: secondary = Base.Revolver_Long
 	weapons: melee = Base.Crowbar
-	ammo: primary = 2
-	ammo: secondary = 2
 	bag: name = Base.Bag_HikingBag_Travel
 
 [44f2b512-f6b7-4842-8d07-1fc8d587f65b]
@@ -343,15 +335,12 @@
 	clothing: Shirt = Base.Shirt_Workman
 	clothing: Sweater = Base.HoodieDOWN_WhiteTINT
 	clothing: Hands = Base.Gloves_LeatherGlovesBlack
-	clothing: AmmoStrap = Base.AmmoStrap_Shells
 	clothing: Pants = Base.Trousers_CamoUrban
 	clothing: Socks = Base.Socks_Long_Black
 	clothing: Shoes = Base.Shoes_ArmyBoots
-	weapons: primary = Base.Shotgun
 	weapons: secondary = Base.Revolver
 	weapons: melee = Base.HandAxe
-	ammo: primary = 2
-	ammo: secondary = 2
+	ammo: secondary = 1
 	bag: name = Base.Bag_HikingBag_Travel
 
 [d3f57250-5d75-4516-8a62-b95bc593e833]

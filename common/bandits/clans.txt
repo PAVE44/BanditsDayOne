@@ -15,13 +15,13 @@
 	spawn: zone = 0
 
 [72fbcd15-a81b-476a-8c25-1b2caea694de]
-	general: name = Bandits
+	general: name = BanditsSpike
 	spawn: friendly = false
 	spawn: companion = false
 	spawn: defenders = false
 	spawn: campers = false
-	spawn: assault = true
-	spawn: wanderer = false
+	spawn: assault = false
+	spawn: wanderer = true
 	spawn: roadblock = false
 	spawn: dayStart = 0
 	spawn: dayEnd = 10000
@@ -36,8 +36,8 @@
 	spawn: companion = false
 	spawn: defenders = false
 	spawn: campers = false
-	spawn: assault = true
-	spawn: wanderer = false
+	spawn: assault = false
+	spawn: wanderer = true
 	spawn: roadblock = false
 	spawn: dayStart = 0
 	spawn: dayEnd = 10000
@@ -47,7 +47,7 @@
 	spawn: zone = 0
 
 [9bf4882b-0622-4e77-82c1-feee90b566b4]
-	general: name = Hazmats
+	general: name = Sweepers
 	spawn: friendly = false
 	spawn: companion = false
 	spawn: defenders = false
@@ -96,7 +96,7 @@
 
 [526e57b9-52cf-42a8-a17b-50e32e4d33f3]
 	general: name = PoliceRiot
-	spawn: friendly = true
+	spawn: friendly = false
 	spawn: companion = false
 	spawn: defenders = false
 	spawn: campers = false
@@ -175,13 +175,13 @@
 	spawn: zone = 0
 
 [c167d1e0-c077-4ee5-b353-88b374de193d]
-	general: name = Civilians
+	general: name = Walkers
 	spawn: friendly = true
 	spawn: companion = false
 	spawn: defenders = false
 	spawn: campers = false
 	spawn: assault = false
-	spawn: wanderer = true
+	spawn: wanderer = false
 	spawn: roadblock = false
 	spawn: dayStart = 0
 	spawn: dayEnd = 10000
@@ -197,7 +197,7 @@
 	spawn: defenders = false
 	spawn: campers = false
 	spawn: assault = false
-	spawn: wanderer = true
+	spawn: wanderer = false
 	spawn: roadblock = false
 	spawn: dayStart = 0
 	spawn: dayEnd = 10000
@@ -212,8 +212,8 @@
 	spawn: companion = false
 	spawn: defenders = false
 	spawn: campers = false
-	spawn: assault = true
-	spawn: wanderer = false
+	spawn: assault = false
+	spawn: wanderer = true
 	spawn: roadblock = false
 	spawn: dayStart = 0
 	spawn: dayEnd = 10000

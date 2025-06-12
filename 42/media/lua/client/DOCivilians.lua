@@ -35,7 +35,7 @@ DOCivilians.ControlPopulation = function()
                     actor:addBlood(0.6)
                     -- SwipeStatePlayer.splash(actor, item, fz)
 
-                    actor:Hit(item, fz, 1.01, false, 1, false)
+                    actor:Hit(genItem, fz, 1.01, false, 1, false)
                     if actor:getHealth() <= 0 then
                         actor:setHealth(0)
                         actor:clearAttachedItems()
